@@ -11,7 +11,7 @@
 
 ## Development Compatibility Layer
 
-The **Development Compatibility Layer** (DCL) is a Lua script providing a unified API that should be compatible between many similar softwares. It is developed by Synapse G.P. but, just like anything in this repository excluding image files, offered completely free of charge under the <b>AGPLv3</b>. The DCL's documentation is synonymous with Synapse X's documentation (as the DCL is based on Synapse X), meaning any Synapse X documentation provides DCL's entire API. [You can view the API documentation here](https://loukamb.github.io/SynapseX). Bear in mind that the DCL is accessed via `api.`, not `syn_`.
+The **Development Compatibility Layer** (DCL) is a Lua script providing a unified API that should be compatible between many similar softwares. It is developed by Synapse G.P. but, just like anything in this repository excluding image files, offered completely free of charge under the <b>AGPLv3</b>. The DCL's documentation is synonymous with Synapse X's documentation (as the DCL is based on Synapse X), meaning any Synapse X documentation provides DCL's entire API. [You can view the API documentation here](https://potatoo-x.github.io/Spex/docs/index.html). Bear in mind that the DCL is accessed via `api.`, not `syn_`.
 
 ## Reporting Issues
 
@@ -29,7 +29,7 @@ If you are a software developer/reverse engineer and you're capable of producing
 
 ## Reporting security vulnerabilities
 
-**We consider security vulnerabilities to be a critical matter,** and we will **reward** those that report them to us in cash prizes and other goodies. If you find a potentially dangerous security vulnerability and you want to tell us then simply contact Louka at the e-mail address written on his [profile](https://github.com/LoukaMB) describing the issue. If further communication is needed from your part, it will be requested.
+**We consider security vulnerabilities to be a critical matter,** and we will **reward** those that report them to us in cash prizes and other goodies. If you find a potentially dangerous security vulnerability and you want to tell us then simply contact Louka at the e-mail address written on his [profile](x.synapse.to) describing the issue. If further communication is needed from your part, it will be requested.
 
 Those are security vulnerabilities that warrants a reward:
 - Methods to use the software without owning a legitimate account
