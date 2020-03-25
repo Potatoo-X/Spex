@@ -1,0 +1,1405 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><!-- start: showthread -->
+<html xml:lang="en" lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Custom Environment Functions</title>
+<!-- start: headerinclude -->
+<link rel="alternate" type="application/rss+xml" title="Latest Threads (RSS 2.0)" href="https://forum.calamari.cc/syndication.php" />
+<link rel="alternate" type="application/atom+xml" title="Latest Threads (Atom 1.0)" href="https://forum.calamari.cc/syndication.php?type=atom1.0" />
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="Content-Script-Type" content="text/javascript" />
+<script type="text/javascript" src="https://forum.calamari.cc/jscripts/jquery.js?ver=1806"></script>
+<script type="text/javascript" src="https://forum.calamari.cc/jscripts/jquery.plugins.min.js?ver=1806"></script>
+<script type="text/javascript" src="https://forum.calamari.cc/jscripts/general.js?ver=1810"></script>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+<link type="text/css" rel="stylesheet" href="https://forum.calamari.cc/cache/themes/theme6/global.min.css" />
+<link type="text/css" rel="stylesheet" href="https://forum.calamari.cc/cache/themes/theme6/star_ratings.min.css" />
+<link type="text/css" rel="stylesheet" href="https://forum.calamari.cc/cache/themes/theme6/showthread.min.css" />
+<link type="text/css" rel="stylesheet" href="https://forum.calamari.cc/cache/themes/theme6/css3.min.css" />
+
+<script type="text/javascript">
+<!--
+	lang.unknown_error = "An unknown error has occurred.";
+
+	lang.select2_match = "One result is available, press enter to select it.";
+	lang.select2_matches = "{1} results are available, use up and down arrow keys to navigate.";
+	lang.select2_nomatches = "No matches found";
+	lang.select2_inputtooshort_single = "Please enter one or more character";
+	lang.select2_inputtooshort_plural = "Please enter {1} or more characters";
+	lang.select2_inputtoolong_single = "Please delete one character";
+	lang.select2_inputtoolong_plural = "Please delete {1} characters";
+	lang.select2_selectiontoobig_single = "You can only select one item";
+	lang.select2_selectiontoobig_plural = "You can only select {1} items";
+	lang.select2_loadmore = "Loading more results…";
+	lang.select2_searching = "Searching…";
+
+	var cookieDomain = ".forum.calamari.cc";
+	var cookiePath = "/";
+	var cookiePrefix = "";
+	var cookieSecureFlag = "1";
+	var deleteevent_confirm = "Are you sure you want to delete this event?";
+	var removeattach_confirm = "Are you sure you want to remove the selected attachment from this post?";
+	var loading_text = 'Loading. <br />Please Wait..';
+	var saving_changes = 'Saving changes..';
+	var use_xmlhttprequest = "1";
+	var my_post_key = "a3caa2b3cdd86fb6b96bf5aec3864249";
+	var rootpath = "https://forum.calamari.cc";
+	var imagepath = "https://forum.calamari.cc/images/mybbdark";
+  	var yes_confirm = "Yes";
+	var no_confirm = "No";
+	var MyBBEditor = null;
+	var spinner_image = "https://forum.calamari.cc/images/mybbdark/spinner.gif";
+	var spinner = "<img src='" + spinner_image +"' alt='' />";
+	var modal_zindex = 9999;
+// -->
+</script>
+<!-- end: headerinclude -->
+<script type="text/javascript">
+<!--
+	var quickdelete_confirm = "Are you sure you want to delete this post?";
+	var quickrestore_confirm = "Are you sure you want to restore this post?";
+	var allowEditReason = "1";
+	lang.save_changes = "Save Changes";
+	lang.cancel_edit = "Cancel Edit";
+	lang.quick_edit_update_error = "There was an error editing your reply:";
+	lang.quick_reply_post_error = "There was an error posting your reply:";
+	lang.quick_delete_error = "There was an error deleting your reply:";
+	lang.quick_delete_success = "The post was deleted successfully.";
+	lang.quick_delete_thread_success = "The thread was deleted successfully.";
+	lang.quick_restore_error = "There was an error restoring your reply:";
+	lang.quick_restore_success = "The post was restored successfully.";
+	lang.editreason = "Edit Reason";
+	lang.post_deleted_error = "You can not perform this action to a deleted post.";
+	lang.softdelete_thread = "Soft Delete Thread";
+	lang.restore_thread = "Restore Thread";
+// -->
+</script>
+<!-- jeditable (jquery) -->
+<script type="text/javascript" src="https://forum.calamari.cc/jscripts/report.js?ver=1820"></script>
+<script src="https://forum.calamari.cc/jscripts/jeditable/jeditable.min.js"></script>
+<script type="text/javascript" src="https://forum.calamari.cc/jscripts/thread.js?ver=1820"></script>
+</head>
+<body>
+	<!-- start: header -->
+<div id="container">
+		<a name="top" id="top"></a>
+		<div id="header">
+			<div id="logo">
+				<div class="wrapper">
+					<a href="https://forum.calamari.cc/index.php"><img src="https://forum.calamari.cc/images/mybbdark/logo_white.png" alt="Calamari Forums" title="Calamari Forums" /></a>
+					<ul class="menu top_links">
+						
+						<!-- start: header_menu_search -->
+<li><a href="https://forum.calamari.cc/search.php"><i class="fa fa-search" aria-hidden="true"></i> Search</a></li>
+<!-- end: header_menu_search -->
+						<!-- start: header_menu_memberlist -->
+<li><a href="https://forum.calamari.cc/memberlist.php"><i class="fa fa-users" aria-hidden="true"></i> Member List</a></li>
+<!-- end: header_menu_memberlist -->
+						
+						<li><a href="https://forum.calamari.cc/misc.php?action=help"><i class="fa fa-life-ring" aria-hidden="true"></i> Help</a></li>
+					</ul>
+				</div>
+			</div>
+			<div id="panel">
+				<div class="upper">
+					<div class="wrapper">
+						<!-- start: header_quicksearch -->
+						<form action="https://forum.calamari.cc/search.php" method="post">
+						<fieldset id="search">
+							<input name="keywords" type="text" class="textbox" />
+							<input value="Search" type="submit" class="button" />
+							<input type="hidden" name="action" value="do_search" />
+							<input type="hidden" name="postthread" value="1" />
+						</fieldset>
+						</form>
+<!-- end: header_quicksearch -->
+						<!-- start: header_welcomeblock_guest -->
+						<!-- Continuation of div(class="upper") as opened in the header template -->
+						<span class="welcome">Hello There, Guest!&nbsp; &nbsp; <a href="https://forum.calamari.cc/member.php?action=login" onclick="$('#quick_login').modal({ fadeDuration: 250, keepelement: true, zIndex: (typeof modal_zindex !== 'undefined' ? modal_zindex : 9999) }); return false;"><i class="fa fa-key"></i> Login</a> &nbsp; <a href="https://forum.calamari.cc/member.php?action=register"><i class="fa fa-user-plus"></i> Register</a></span>
+					</div>
+				</div>
+				<div class="modal" id="quick_login" style="display: none;">
+					<form method="post" action="https://forum.calamari.cc/member.php">
+						<input name="my_post_key" type="hidden" value="a3caa2b3cdd86fb6b96bf5aec3864249" />
+						<input name="action" type="hidden" value="do_login" />
+						<input name="url" type="hidden" value="" />
+						<input name="quick_login" type="hidden" value="1" />
+						<table width="100%" cellspacing="0" cellpadding="5" border="0" class="tborder">
+							<tr>
+								<td class="thead" colspan="2"><strong>Login</strong></td>
+							</tr>
+							<tr>
+								<td class="trow1" width="25%"><strong>Username:</strong></td>
+								<td class="trow1"><input name="quick_username" id="quick_login_username" type="text" value="" class="textbox initial_focus" /></td>
+							</tr>
+							<tr>
+								<td class="trow2"><strong>Password:</strong></td>
+								<td class="trow2">
+									<input name="quick_password" id="quick_login_password" type="password" value="" class="textbox" /> <a href="https://forum.calamari.cc/member.php?action=lostpw" class="lost_password">Lost Password?</a>
+								</td>
+							</tr>
+							<tr>
+								<td class="trow1">&nbsp;</td>
+								<td class="trow1 remember_me">
+									<input name="quick_remember" id="quick_login_remember" type="checkbox" value="yes" class="checkbox" checked="checked" />
+									<label for="quick_login_remember">Remember me</label>
+								</td>
+							</tr>
+							<tr>
+								<td class="trow2" colspan="2">
+									<div align="center"><input name="submit" type="submit" class="button" value="Login" /></div>
+								</td>
+							</tr>
+						</table>
+					</form>
+				</div>
+				<script type="text/javascript">
+					$("#quick_login input[name='url']").val($(location).attr('href'));
+				</script>
+<!-- end: header_welcomeblock_guest -->
+					<!-- </div> in header_welcomeblock_member and header_welcomeblock_guest -->
+				<!-- </div> in header_welcomeblock_member and header_welcomeblock_guest -->
+			</div>
+		</div>
+		<div id="content">
+			<div class="wrapper">
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<!-- start: nav -->
+<div class="navigation">
+<i class="fa fa-home" aria-hidden="true"></i> <!-- start: nav_bit -->
+<a href="https://forum.calamari.cc/index.php">Calamari Forums</a><!-- start: nav_sep -->
+&rsaquo;
+<!-- end: nav_sep -->
+<!-- end: nav_bit --><!-- start: nav_bit -->
+<a href="forumdisplay.php?fid=4">Social</a><!-- start: nav_sep -->
+&rsaquo;
+<!-- end: nav_sep -->
+<!-- end: nav_bit --><!-- start: nav_bit -->
+<a href="forumdisplay.php?fid=5&amp;page=132">General </a><!-- start: nav_dropdown -->
+ <img src="https://forum.calamari.cc/images/mybbdark/arrow_down.png" alt="v" title="" class="pagination_breadcrumb_link" id="breadcrumb_multipage" /><!-- start: multipage_breadcrumb -->
+<div id="breadcrumb_multipage_popup" class="pagination pagination_breadcrumb" style="display: none;">
+<!-- start: multipage_prevpage -->
+<a href="forumdisplay.php?fid=5&amp;page=131" class="pagination_previous">&laquo; Previous</a>
+<!-- end: multipage_prevpage --><!-- start: multipage_start -->
+<a href="forumdisplay.php?fid=5" class="pagination_first">1</a>  ...
+<!-- end: multipage_start --><!-- start: multipage_page -->
+<a href="forumdisplay.php?fid=5&amp;page=130" class="pagination_page">130</a>
+<!-- end: multipage_page --><!-- start: multipage_page -->
+<a href="forumdisplay.php?fid=5&amp;page=131" class="pagination_page">131</a>
+<!-- end: multipage_page --><!-- start: multipage_page_link_current -->
+ <a href="forumdisplay.php?fid=5&amp;page=132" class="pagination_current">132</a>
+<!-- end: multipage_page_link_current --><!-- start: multipage_page -->
+<a href="forumdisplay.php?fid=5&amp;page=133" class="pagination_page">133</a>
+<!-- end: multipage_page --><!-- start: multipage_page -->
+<a href="forumdisplay.php?fid=5&amp;page=134" class="pagination_page">134</a>
+<!-- end: multipage_page --><!-- start: multipage_end -->
+...  <a href="forumdisplay.php?fid=5&amp;page=136" class="pagination_last">136</a>
+<!-- end: multipage_end --><!-- start: multipage_nextpage -->
+<a href="forumdisplay.php?fid=5&amp;page=133" class="pagination_next">Next &raquo;</a>
+<!-- end: multipage_nextpage -->
+</div>
+<script type="text/javascript">
+// <!--
+	if(use_xmlhttprequest == "1")
+	{
+		$("#breadcrumb_multipage").popupMenu();
+	}
+// -->
+</script>
+<!-- end: multipage_breadcrumb -->
+<!-- end: nav_dropdown -->
+<!-- end: nav_bit --><!-- start: nav_sep_active -->
+&rsaquo;
+<!-- end: nav_sep_active --><!-- start: nav_bit_active -->
+<span class="active">Custom Environment Functions</span>
+<!-- end: nav_bit_active -->
+</div>
+<!-- end: nav -->
+				<br />
+<!-- end: header -->
+	
+	
+	<div class="float_left">
+		
+	</div>
+	<div class="float_right">
+		
+	</div>
+	<!-- start: showthread_ratethread -->
+<div style="margin-top: 6px; padding-right: 10px;" class="float_right">
+		<script type="text/javascript">
+		<!--
+			lang.ratings_update_error = "";
+		// -->
+		</script>
+		<script type="text/javascript" src="https://forum.calamari.cc/jscripts/rating.js?ver=1808"></script>
+		<div class="inline_rating">
+			<strong class="float_left" style="padding-right: 10px;">Thread Rating:</strong>
+			<ul class="star_rating star_rating_notrated" id="rating_thread_401">
+				<li style="width: 0%" class="current_rating" id="current_rating_401">0 Vote(s) - 0 Average</li>
+				<li><a class="one_star" title="1 star out of 5" href="./ratethread.php?tid=401&amp;rating=1&amp;my_post_key=a3caa2b3cdd86fb6b96bf5aec3864249">1</a></li>
+				<li><a class="two_stars" title="2 stars out of 5" href="./ratethread.php?tid=401&amp;rating=2&amp;my_post_key=a3caa2b3cdd86fb6b96bf5aec3864249">2</a></li>
+				<li><a class="three_stars" title="3 stars out of 5" href="./ratethread.php?tid=401&amp;rating=3&amp;my_post_key=a3caa2b3cdd86fb6b96bf5aec3864249">3</a></li>
+				<li><a class="four_stars" title="4 stars out of 5" href="./ratethread.php?tid=401&amp;rating=4&amp;my_post_key=a3caa2b3cdd86fb6b96bf5aec3864249">4</a></li>
+				<li><a class="five_stars" title="5 stars out of 5" href="./ratethread.php?tid=401&amp;rating=5&amp;my_post_key=a3caa2b3cdd86fb6b96bf5aec3864249">5</a></li>
+			</ul>
+		</div>
+</div>
+<!-- end: showthread_ratethread -->
+	<table border="0" cellspacing="0" cellpadding="5" class="tborder tfixed clear">
+		<tr>
+			<td class="thead">
+				<div class="float_right">
+					<span class="smalltext"><strong><a href="javascript:void(0)" id="thread_modes">Thread Modes</a></strong></span>
+				</div>
+				<div>
+					<strong>Custom Environment Functions</strong>
+				</div>
+			</td>
+		</tr>
+<tr><td id="posts_container">
+	<div id="posts">
+		<!-- start: postbit -->
+
+<a name="pid835" id="pid835"></a>
+<div class="post " style="" id="post_835">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=76"><img src="https://forum.calamari.cc/uploads/avatars/avatar_76.png?dateline=1553219609" alt="" width="54" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=76"><font color="blue">Inspect</font> <img src="http://forum.calamari.cc/custom_files/hammer.png"></a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Creator<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">6</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">1</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Mar 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=835#pid835" title="Custom Environment Functions">#1</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">06-02-2019, 06:57 PM <span class="post_edit" id="edited_by_835"><!-- start: postbit_editedby -->
+<span class="edited_post">(This post was last modified: 07-14-2019, 08:56 PM by <a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=76">Inspect</a>.)</span>
+<!-- end: postbit_editedby --></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_835">
+		<span style="color: #cc66ff;" class="mycode_color">string</span> HttpGet(unk, <span style="color: #cc66ff;" class="mycode_color">string</span> url)<br />
+Returns fetched HTTP contents<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #3399ff;" class="mycode_color">Instance</span>&gt; GetObjects(unk, <span style="color: #cc66ff;" class="mycode_color">string</span> asseturl)<br />
+Returns array of objects from specified asseturl<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> info(<span style="color: #33cc33;" class="mycode_color">ToString</span> ...)<br />
+Outputs an info message in the dev console<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> error2(<span style="color: #33cc33;" class="mycode_color">ToString</span> ...)<br />
+Outputs a red message in the dev console<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> getgenv()<br />
+Returns getfenv()'s __index<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> getrenv()<br />
+Returns real environment<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> getreg()<br />
+Returns the Lua registry table<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> getgc()<br />
+Returns a table of all collectible Lua objects<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> gettenv(<span style="color: #33cc33;" class="mycode_color">thread </span>th)<br />
+Returns environment of a thread<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #3399ff;" class="mycode_color">table</span>&gt; getallthreads()<br />
+Returns an array of every Lua thread<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> getrawmetatable()<br />
+Returns the metatable of an object, even if locked<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> getsenv/getmenv(<span style="color: #3399ff;" class="mycode_color">Variant</span>&lt;<span style="color: #33cc99;" class="mycode_color">Script</span>, <span style="color: #33ccff;" class="mycode_color">ModuleScript</span>&gt; sc)<br />
+Returns the environment of a script or modulescript<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #3399ff;" class="mycode_color">table</span>&gt; getscriptenvs()<br />
+Returns an array of all the environments that have a "script" global<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">function</span>/<span style="color: #3399ff;" class="mycode_color">bool</span>, <span style="color: #3399ff;" class="mycode_color">nil</span>/<span style="color: #cc66ff;" class="mycode_color">string</span> loadstring(<span style="color: #cc66ff;" class="mycode_color">string</span> source, <span style="color: #cc66ff;" class="mycode_color">string</span> chunkname = <span style="color: #3399ff;" class="mycode_color">nil</span>)<br />
+Compiles source (with optional chunkname), and returns the generated LClosure. If the<br />
+compilation fails, false will be returned, along with an error message.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">function</span>/<span style="color: #3399ff;" class="mycode_color">bool</span>, <span style="color: #3399ff;" class="mycode_color">nil</span>/<span style="color: #cc66ff;" class="mycode_color">string</span> loadfile(<span style="color: #cc66ff;" class="mycode_color">string</span> path, <span style="color: #cc66ff;" class="mycode_color">string</span> chunkname = <span style="color: #3399ff;" class="mycode_color">nil</span>)<br />
+Compiles the source of a file (with optional chunkname), and returns the generated LClosure. <br />
+If the compilation fails, false will be returned, along with an error message.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> dofile(<span style="color: #cc66ff;" class="mycode_color">string</span> path)<br />
+Compiles source (with optional chunkname), and calls LClosure. If the<br />
+compilation fails, an error message will display in the dev console.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> setreadonly(<span style="color: #3399ff;" class="mycode_color">table</span> tbl)<br />
+Set's a table's readonly property<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">bool</span> isreadonly(<span style="color: #3399ff;" class="mycode_color">table</span> tbl)<br />
+Returns a table's readonly property<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">bool</span> checkcaller(<span style="color: #3399ff;" class="mycode_color">number</span> level)<br />
+Returns if the function calling the function calling checkcaller was created by Calamari.<br />
+If a level is specified, it ill return if the function of that level is a Calamari function.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">bool</span> checkclosure(<span style="color: #3399ff;" class="mycode_color">function</span> f)<br />
+Returns is the closure specified was created by Calamari.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #3399ff;" class="mycode_color">Instance</span>&gt; getinstances()<br />
+Returns an array of all Instances.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #3399ff;" class="mycode_color">Instance</span>&gt; getnilinstances() <br />
+Returns an array of all Instances parented to nil.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">Instance</span> createrawinstance(<span style="color: #cc66ff;" class="mycode_color">string</span> classname) <br />
+Returns an object based on ClassName, ignoring all typechecks. <br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> getcontext()<br />
+Returns the current identity.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> setcontext(<span style="color: #3399ff;" class="mycode_color">number</span> identity)<br />
+Sets the current identity.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mkdir(<span style="color: #cc66ff;" class="mycode_color">string</span> path)<br />
+Creates a folder in the specified path.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> writefile(<span style="color: #cc66ff;" class="mycode_color">string</span> path, <span style="color: #3399ff;" class="mycode_color">BinaryString</span> cont)<br />
+Writes string/BinaryString to the specified path.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">BinaryString</span> readfile(<span style="color: #cc66ff;" class="mycode_color">string</span> path)<br />
+Returns a string/BinaryString from the specified path.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">BinaryString</span> readfileas(<span style="color: #cc66ff;" class="mycode_color">string</span> title = <span style="color: #3399ff;" class="mycode_color">nil</span>)<br />
+Prompts the user with an OpenFileDialog, and returns the content<br />
+of the selected file. If cancelled, this will return nil.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> writefileas(<span style="color: #3399ff;" class="mycode_color">BinaryString</span> cont, <span style="color: #cc66ff;" class="mycode_color">string</span> title = <span style="color: #3399ff;" class="mycode_color">nil</span>)<br />
+Prompts the user with an OpenFileDialog, and savesthe content<br />
+to the selected file. If cancelled, this will not return.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> messagebox(<span style="color: #cc66ff;" class="mycode_color">string</span> msg)<br />
+Displays a MessageBox with the desired message.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">BinaryString</span> serialize(<span style="color: #33cc99;" class="mycode_color">Script </span>sc)<br />
+Returns the serialized form of a script represented as LuaU bytecode. <br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">LClosure</span> deserialize(<span style="color: #3399ff;" class="mycode_color">BinaryString</span> bin)<br />
+Returns an LClosure based off of a deserialized dump of LuaU bytecode.<br />
+<br />
+<span style="color: #cc66ff;" class="mycode_color">string</span> decompile(<span style="color: #3399ff;" class="mycode_color">Variant</span>&lt;<span style="color: #33cc99;" class="mycode_color">Script</span>, <span style="color: #33ccff;" class="mycode_color">ModuleScript</span>&gt; sc)<br />
+Returns the decompiled source of a Script/ModuleScript<br />
+<br />
+<span style="color: #cc66ff;" class="mycode_color">string</span> protodump(<span style="color: #3399ff;" class="mycode_color">Variant</span>&lt;<span style="color: #33cc99;" class="mycode_color">Script</span>, <span style="color: #33ccff;" class="mycode_color">ModuleScript</span>&gt; sc)<br />
+Returns the dumped proto of any script/modulescript.<br />
+NOTE: The protos are represented as C structs, so you may reuse <br />
+them in your code.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> setclipboard(<span style="color: #3399ff;" class="mycode_color">Variant</span>&lt;<span style="color: #33cc33;" class="mycode_color">ToString</span>, <span style="color: #3399ff;" class="mycode_color">Instance</span>&gt; ...)<br />
+Sets data to the clipboard. If it's an Instance, it will be copied <br />
+as Instance data and can be pasted into Studio.<br />
+<br />
+<span style="color: #cc66ff;" class="mycode_color"><span style="color: #3399ff;" class="mycode_color">Variant&lt;</span>string, <span style="color: #3399ff;" class="mycode_color">Instance</span>&gt;</span> getclipboard()<br />
+Returns the data from the clipboard. If the clipboard contains<br />
+an instance, it will be loaded via loadinstance.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> printconsole(<span style="color: #33cc33;" class="mycode_color">ToString</span> ...)<br />
+Outputs data to the Calamari console. A space character will be placed <br />
+after each individual object.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">BinaryString</span> saveinstance(<span style="color: #3399ff;" class="mycode_color">Variant</span>&lt;<span style="color: #3399ff;" class="mycode_color">Instance</span>, <span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #3399ff;" class="mycode_color">Instance</span>&gt;&gt; objects = <span style="color: #3399ff;" class="mycode_color">game</span>, <span style="color: #cc66ff;" class="mycode_color">string</span> path = <span style="color: #3399ff;" class="mycode_color">nil</span>, <span style="color: #3399ff;" class="mycode_color">bool</span> binary = <span style="color: #3399ff;" class="mycode_color">false</span>)<br />
+Returns saved instances. If objects is not specified, game will automatically be entirely saved as a .rbxl. If it is specified, <br />
+and is an Instance, that instance will be saved as a .rbxm(x). If it is specified as a table,  the contained instances will be saved as <br />
+a .rbxm(x). If a path is specified, it will save the file automatically to that path. If binary is false, all data will be represented in raw XML,<br />
+and the appropriate file extensions should be .rbxmx. If binary is true, all data will be LZ4 compressed, and the appropriate file paths <br />
+should be .rbxm.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">Instance</span> loadinstance(<span style="color: #3399ff;" class="mycode_color">BinaryString</span> cont)<br />
+Returns a loaded instance from XML or BinaryString. This function will automatically detect Binary and XML instances.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">Variant</span> fireclient(<span style="color: #ff99ff;" class="mycode_color">RemoteEvent </span>remote, <span style="color: #3399ff;" class="mycode_color">Variant</span> ...)<br />
+Bypasses client check and fires a RemoteEvent.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">Variant</span> invokeclient(<span style="color: #ff99ff;" class="mycode_color">RemoteFunction </span>remote, <span style="color: #3399ff;" class="mycode_color">Variant</span> ...)<br />
+Bypasses client check and fires a RemoteFunction.<br />
+<br />
+<span style="color: #33cc99;" class="mycode_color">Script </span>getscriptcaller(<span style="color: #3399ff;" class="mycode_color">number</span> level)<br />
+Returns the script from the callers environment. If level is specified, we retrieve the script from that level.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">function</span> getcaller(<span style="color: #3399ff;" class="mycode_color">number</span> level)<br />
+Returns the caller. If level is specified, we retrieve that level's caller.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">LClosure</span> getscriptfunction(<span style="color: #33cc99;" class="mycode_color">Script </span>sc)<br />
+Returns the function of a script.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #33ccff;" class="mycode_color">ModuleScript</span>&gt; getmodules()<br />
+Returns an array populated with every module script.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span>&lt;<span style="color: #33cc99;" class="mycode_color">Script</span>&gt; getscripts()<br />
+Returns an array populated with every script.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">Closure </span>hookfunction/replaceclosure(<span style="color: #3399ff;" class="mycode_color">Closure </span>f, <span style="color: #3399ff;" class="mycode_color">Closure </span>replacement)<br />
+Returns a copy of the original function f. Replaces closure f with replacement.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">bool </span>islclosure(<span style="color: #3399ff;" class="mycode_color">Closure </span>f)<br />
+Returns if the specified function is an LClosure.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">CClosure</span> newcclosure(<span style="color: #3399ff;" class="mycode_color">Closure </span>f)<br />
+Returns an enclosed, C version of function f. The returned function may yield, but will return outside<br />
+of the line of execution. This function will also be skipped over when calling checkcaller, and will return true <br />
+when sent to checkclosure.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">CClosure</span> newcclosureyield(<span style="color: #3399ff;" class="mycode_color">Closure </span>f)<br />
+Returns an enclosed, C version of function f. Unlike newcclosure, this function will stay on the (topic) line of execution<br />
+when yielded. Unfortunately, the way this function works will break checkclosure, getfenv, and other level-oriented functions.<br />
+Aditionally, if this function yields and returns, the value "true" will be placed on the stack when resumed. This should be fixed in a later<br />
+update, and if so, please ignore this message.<br />
+<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> keypress(<span style="color: #3399ff;" class="mycode_color">number</span> key)<br />
+Simulates a key press<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> keyrelease(<span style="color: #3399ff;" class="mycode_color">number</span> key)<br />
+Simulates a key release<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mouse1click(<span style="color: #3399ff;" class="mycode_color">number</span> delay)<br />
+Simulates a left mouse click<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mouse1press()<br />
+Simulates a left mouse press<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mouse1release()<br />
+Simulates a left mouse release<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mouse2click(<span style="color: #3399ff;" class="mycode_color">number</span> delay)<br />
+Simulates a right mouse click<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mouse2press()<br />
+Simulates a right mouse press<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mouse2release()<br />
+Simulates a right mouse release<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mousemoverel(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Simulates a mouse moving relative <br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> mousescroll(<span style="color: #3399ff;" class="mycode_color">number</span> scroll)<br />
+Simulates a mouse scroll<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> inverse(<span style="color: #3399ff;" class="mycode_color">number</span> num)<br />
+Returns the multiplicative inverse of a given number.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> debug.getfenv(<span style="color: #3399ff;" class="mycode_color">Variant</span>&lt;<span style="color: #3399ff;" class="mycode_color">number</span> level, <span style="color: #3399ff;" class="mycode_color">function</span> f&gt;)<br />
+Returns the environment of the specified level or function.<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> debug.setfenv(<span style="color: #3399ff;" class="mycode_color">function</span> f, <span style="color: #3399ff;" class="mycode_color">table</span> env)<br />
+Sets a functions environment<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">table</span> debug.getmetatable(<span style="color: #3399ff;" class="mycode_color">Variant</span> obj)<br />
+Returns the metatable of an object<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">void</span> debug.setmetatable(<span style="color: #3399ff;" class="mycode_color">Variant</span> obj, <span style="color: #3399ff;" class="mycode_color">table</span> mt)<br />
+Sets the metatable of an object<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.badd(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x + y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.band(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x &amp; y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.bdiv(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x / y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.bmul(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x * y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.bnot(<span style="color: #3399ff;" class="mycode_color">number</span> x)<br />
+Returns ~x<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.bor(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x | y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.bsub(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x - y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.bswap(<span style="color: #3399ff;" class="mycode_color">number</span> x)<br />
+Returns swapped byes of X<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.bxor(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x ^ y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.lshift(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x &lt;&lt; y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.ror(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns ROR(x, y)<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.rshift(<span style="color: #3399ff;" class="mycode_color">number</span> x, <span style="color: #3399ff;" class="mycode_color">number</span> y)<br />
+Returns x &gt;&gt; y<br />
+<br />
+<span style="color: #3399ff;" class="mycode_color">number</span> bit.tobit(<span style="color: #3399ff;" class="mycode_color">number</span> x,)<br />
+Returns normalized x<br />
+<br />
+<span style="color: #cc66ff;" class="mycode_color">string</span> bit.tohex(<span style="color: #3399ff;" class="mycode_color">number</span> x)<br />
+Returns hex representation of x
+	</div>
+	
+	
+	<div class="post_meta" id="post_meta_835">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=76" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=835" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid836" id="pid836"></a>
+<div class="post " style="" id="post_836">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=136"><img src="https://i.imgur.com/O3zxkO4.gif?dateline=1555395542" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=136">Gian</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Junior Member<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">13</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">3</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Mar 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=836#pid836" title="RE: Custom Environment Functions">#2</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">06-02-2019, 10:40 PM <span class="post_edit" id="edited_by_836"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_836">
+		Oh ma gawd <br />
+Variables need this<br />
+If u release this squid ill bump it XD
+	</div>
+	
+	<!-- start: postbit_signature -->
+<div class="signature scaleimages">
+<br />
+<img src="https://media.giphy.com/media/S9QW8iRHu3PGHJzWj8/giphy.gif" alt="[Image: giphy.gif]" class="mycode_img" />
+</div>
+<!-- end: postbit_signature -->
+	<div class="post_meta" id="post_meta_836">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=136" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=836" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid838" id="pid838"></a>
+<div class="post " style="" id="post_838">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=16"><img src="https://forum.calamari.cc/uploads/avatars/avatar_16.jpg?dateline=1552878378" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=16">Aero</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Junior Member<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">6</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">2</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Mar 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=838#pid838" title="RE: Custom Environment Functions">#3</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">06-03-2019, 06:18 AM <span class="post_edit" id="edited_by_838"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_838">
+		protodump? I don't think I've seen that one before, very interesting!
+	</div>
+	
+	<!-- start: postbit_signature -->
+<div class="signature scaleimages">
+Not the Axon Aero.<br />
+<br />
+@Aero#7001
+</div>
+<!-- end: postbit_signature -->
+	<div class="post_meta" id="post_meta_838">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=16" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=838" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid18588" id="pid18588"></a>
+<div class="post " style="" id="post_18588">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=294"><img src="https://forum.calamari.cc/images/default_avatar.png" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=294">victreebelf</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Posting Freak<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">7,899</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">0</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Jun 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=18588#pid18588" title="RE: Custom Environment Functions">#4</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">06-17-2019, 10:50 PM <span class="post_edit" id="edited_by_18588"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_18588">
+		<a href="http://audiobookkeeper.ru/book/234" target="_blank" rel="noopener" class="mycode_url">избр</a><a href="http://cottagenet.ru/plan/234" target="_blank" rel="noopener" class="mycode_url">160.7</a><a href="http://eyesvision.ru" target="_blank" rel="noopener" class="mycode_url">чувс</a><a href="http://eyesvisions.com" target="_blank" rel="noopener" class="mycode_url">pers</a><a href="http://factoringfee.ru/t/469045" target="_blank" rel="noopener" class="mycode_url">Terr</a><a href="http://filmzones.ru/t/134220" target="_blank" rel="noopener" class="mycode_url">Side</a><a href="http://gadwall.ru/t/240958" target="_blank" rel="noopener" class="mycode_url">Glen</a><a href="http://gaffertape.ru/t/350672" target="_blank" rel="noopener" class="mycode_url">Лагу</a><a href="http://gageboard.ru/t/391321" target="_blank" rel="noopener" class="mycode_url">qVal</a><a href="http://gagrule.ru/t/263054" target="_blank" rel="noopener" class="mycode_url">Doro</a><a href="http://gallduct.ru/t/667984" target="_blank" rel="noopener" class="mycode_url">Колп</a><a href="http://galvanometric.ru/t/324878" target="_blank" rel="noopener" class="mycode_url">312-</a><a href="http://gangforeman.ru/t/142036" target="_blank" rel="noopener" class="mycode_url">Ange</a><a href="http://gangwayplatform.ru/t/167248" target="_blank" rel="noopener" class="mycode_url">Rans</a><a href="http://garbagechute.ru/t/831140" target="_blank" rel="noopener" class="mycode_url">Алек</a><a href="http://gardeningleave.ru/t/141437" target="_blank" rel="noopener" class="mycode_url">Hard</a><a href="http://gascautery.ru/t/328105" target="_blank" rel="noopener" class="mycode_url">Dors</a><a href="http://gashbucket.ru/t/196091" target="_blank" rel="noopener" class="mycode_url">Wilh</a><a href="http://gasreturn.ru/t/654655" target="_blank" rel="noopener" class="mycode_url">дете</a><a href="http://gatedsweep.ru/t/558590" target="_blank" rel="noopener" class="mycode_url">Fami</a><a href="http://gaugemodel.ru/t/675368" target="_blank" rel="noopener" class="mycode_url">назв</a><a href="http://gaussianfilter.ru/t/673780" target="_blank" rel="noopener" class="mycode_url">авто</a><a href="http://gearpitchdiameter.ru/t/448492" target="_blank" rel="noopener" class="mycode_url">Hear</a><br />
+<a href="http://geartreating.ru/t/568053" target="_blank" rel="noopener" class="mycode_url">Ange</a><a href="http://generalizedanalysis.ru/t/350870" target="_blank" rel="noopener" class="mycode_url">Aiko</a><a href="http://generalprovisions.ru/t/481658" target="_blank" rel="noopener" class="mycode_url">Tesc</a><a href="http://geophysicalprobe.ru/t/559017" target="_blank" rel="noopener" class="mycode_url">Pens</a><a href="http://geriatricnurse.ru/t/138617" target="_blank" rel="noopener" class="mycode_url">Luxe</a><a href="http://getintoaflap.ru/t/138668" target="_blank" rel="noopener" class="mycode_url">Smac</a><a href="http://getthebounce.ru/t/137805" target="_blank" rel="noopener" class="mycode_url">Home</a><a href="http://habeascorpus.ru/t/626602" target="_blank" rel="noopener" class="mycode_url">Drea</a><a href="http://habituate.ru/t/625499" target="_blank" rel="noopener" class="mycode_url">Conc</a><a href="http://hackedbolt.ru/t/294686" target="_blank" rel="noopener" class="mycode_url">Грос</a><a href="http://hackworker.ru/t/623865" target="_blank" rel="noopener" class="mycode_url">Futu</a><a href="http://hadronicannihilation.ru/t/623312" target="_blank" rel="noopener" class="mycode_url">Reyn</a><a href="http://haemagglutinin.ru/t/597288" target="_blank" rel="noopener" class="mycode_url">Лаза</a><a href="http://hailsquall.ru/t/139518" target="_blank" rel="noopener" class="mycode_url">Neut</a><a href="http://hairysphere.ru/t/300398" target="_blank" rel="noopener" class="mycode_url">Лерм</a><a href="http://halforderfringe.ru/t/560922" target="_blank" rel="noopener" class="mycode_url">pres</a><a href="http://halfsiblings.ru/t/561661" target="_blank" rel="noopener" class="mycode_url">Head</a><a href="http://hallofresidence.ru/t/478924" target="_blank" rel="noopener" class="mycode_url">Дьяк</a><a href="http://haltstate.ru/t/395720" target="_blank" rel="noopener" class="mycode_url">Skin</a><a href="http://handcoding.ru/t/565203" target="_blank" rel="noopener" class="mycode_url">Aloe</a><a href="http://handportedhead.ru/t/655417" target="_blank" rel="noopener" class="mycode_url">Шахм</a><a href="http://handradar.ru/t/561286" target="_blank" rel="noopener" class="mycode_url">Spic</a><a href="http://handsfreetelephone.ru/t/137640" target="_blank" rel="noopener" class="mycode_url">Rene</a><br />
+<a href="http://hangonpart.ru/t/172904" target="_blank" rel="noopener" class="mycode_url">prog</a><a href="http://haphazardwinding.ru/t/299697" target="_blank" rel="noopener" class="mycode_url">Воро</a><a href="http://hardalloyteeth.ru/t/279524" target="_blank" rel="noopener" class="mycode_url">Петр</a><a href="http://hardasiron.ru/t/299050" target="_blank" rel="noopener" class="mycode_url">Курь</a><a href="http://hardenedconcrete.ru/t/565995" target="_blank" rel="noopener" class="mycode_url">Vogu</a><a href="http://harmonicinteraction.ru/t/302250" target="_blank" rel="noopener" class="mycode_url">Voic</a><a href="http://hartlaubgoose.ru/t/140675" target="_blank" rel="noopener" class="mycode_url">Capa</a><a href="http://hatchholddown.ru/t/177622" target="_blank" rel="noopener" class="mycode_url">возм</a><a href="http://haveafinetime.ru/t/280680" target="_blank" rel="noopener" class="mycode_url">Яшун</a><a href="http://hazardousatmosphere.ru/t/156013" target="_blank" rel="noopener" class="mycode_url">инст</a><a href="http://headregulator.ru/t/174605" target="_blank" rel="noopener" class="mycode_url">Арис</a><a href="http://heartofgold.ru/t/177120" target="_blank" rel="noopener" class="mycode_url">Will</a><a href="http://heatageingresistance.ru/t/273268" target="_blank" rel="noopener" class="mycode_url">рево</a><a href="http://heatinggas.ru/t/442976" target="_blank" rel="noopener" class="mycode_url">Попо</a><a href="http://heavydutymetalcutting.ru/t/304597" target="_blank" rel="noopener" class="mycode_url">инте</a><a href="http://jacketedwall.ru/t/285263" target="_blank" rel="noopener" class="mycode_url">Terr</a><a href="http://japanesecedar.ru/t/303567" target="_blank" rel="noopener" class="mycode_url">друз</a><a href="http://jibtypecrane.ru/t/601738" target="_blank" rel="noopener" class="mycode_url">Jimm</a><a href="http://jobabandonment.ru/t/602560" target="_blank" rel="noopener" class="mycode_url">Niki</a><a href="http://jobstress.ru/t/602545" target="_blank" rel="noopener" class="mycode_url">Roxy</a><a href="http://jogformation.ru/t/606111" target="_blank" rel="noopener" class="mycode_url">мело</a><a href="http://jointcapsule.ru/t/549622" target="_blank" rel="noopener" class="mycode_url">Ange</a><a href="http://jointsealingmaterial.ru/t/542594" target="_blank" rel="noopener" class="mycode_url">Llik</a><br />
+<a href="http://journallubricator.ru/t/140978" target="_blank" rel="noopener" class="mycode_url">Digi</a><a href="http://juicecatcher.ru/t/525599" target="_blank" rel="noopener" class="mycode_url">Parf</a><a href="http://junctionofchannels.ru/t/296159" target="_blank" rel="noopener" class="mycode_url">Само</a><a href="http://justiciablehomicide.ru/t/304363" target="_blank" rel="noopener" class="mycode_url">блюд</a><a href="http://juxtapositiontwin.ru/t/304160" target="_blank" rel="noopener" class="mycode_url">Ордо</a><a href="http://kaposidisease.ru/t/303601" target="_blank" rel="noopener" class="mycode_url">теле</a><a href="http://keepagoodoffing.ru/t/310847" target="_blank" rel="noopener" class="mycode_url">Евел</a><a href="http://keepsmthinhand.ru/t/323402" target="_blank" rel="noopener" class="mycode_url">Wong</a><a href="http://kentishglory.ru/t/478405" target="_blank" rel="noopener" class="mycode_url">Аста</a><a href="http://kerbweight.ru/t/195999" target="_blank" rel="noopener" class="mycode_url">Kurt</a><a href="http://kerrrotation.ru/t/337862" target="_blank" rel="noopener" class="mycode_url">Krzy</a><a href="http://keymanassurance.ru/t/294272" target="_blank" rel="noopener" class="mycode_url">Соло</a><a href="http://keyserum.ru/t/253163" target="_blank" rel="noopener" class="mycode_url">Bill</a><a href="http://kickplate.ru/t/157295" target="_blank" rel="noopener" class="mycode_url">Swar</a><a href="http://killthefattedcalf.ru/t/604098" target="_blank" rel="noopener" class="mycode_url">Fuxi</a><a href="http://kilowattsecond.ru/t/605130" target="_blank" rel="noopener" class="mycode_url">сере</a><a href="http://kingweakfish.ru/t/608392" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://kinozones.ru/film/234" target="_blank" rel="noopener" class="mycode_url">друг</a><a href="http://kleinbottle.ru/t/604121" target="_blank" rel="noopener" class="mycode_url">Arts</a><a href="http://kneejoint.ru/t/604256" target="_blank" rel="noopener" class="mycode_url">чист</a><a href="http://knifesethouse.ru/t/595488" target="_blank" rel="noopener" class="mycode_url">Fran</a><a href="http://knockonatom.ru/t/432967" target="_blank" rel="noopener" class="mycode_url">Панк</a><a href="http://knowledgestate.ru/t/604066" target="_blank" rel="noopener" class="mycode_url">Arts</a><br />
+<a href="http://kondoferromagnet.ru/t/195914" target="_blank" rel="noopener" class="mycode_url">путе</a><a href="http://labeledgraph.ru/t/770430" target="_blank" rel="noopener" class="mycode_url">XVII</a><a href="http://laborracket.ru/t/157416" target="_blank" rel="noopener" class="mycode_url">сере</a><a href="http://labourearnings.ru/t/158202" target="_blank" rel="noopener" class="mycode_url">Miyo</a><a href="http://labourleasing.ru/t/299171" target="_blank" rel="noopener" class="mycode_url">Влад</a><a href="http://laburnumtree.ru/t/440072" target="_blank" rel="noopener" class="mycode_url">Брон</a><a href="http://lacingcourse.ru/t/529036" target="_blank" rel="noopener" class="mycode_url">Jewe</a><a href="http://lacrimalpoint.ru/t/492757" target="_blank" rel="noopener" class="mycode_url">Nemc</a><a href="http://lactogenicfactor.ru/t/511114" target="_blank" rel="noopener" class="mycode_url">Rola</a><a href="http://lacunarycoefficient.ru/t/285270" target="_blank" rel="noopener" class="mycode_url">Емел</a><a href="http://ladletreatediron.ru/t/171726" target="_blank" rel="noopener" class="mycode_url">Poli</a><a href="http://laggingload.ru/t/246554" target="_blank" rel="noopener" class="mycode_url">факу</a><a href="http://laissezaller.ru/t/294486" target="_blank" rel="noopener" class="mycode_url">Geor</a><a href="http://lambdatransition.ru/t/166316" target="_blank" rel="noopener" class="mycode_url">Cice</a><a href="http://laminatedmaterial.ru/t/292491" target="_blank" rel="noopener" class="mycode_url">Прем</a><a href="http://lammasshoot.ru/t/267191" target="_blank" rel="noopener" class="mycode_url">Широ</a><a href="http://lamphouse.ru/t/300464" target="_blank" rel="noopener" class="mycode_url">пере</a><a href="http://lancecorporal.ru/t/283979" target="_blank" rel="noopener" class="mycode_url">Пяти</a><a href="http://lancingdie.ru/t/69557" target="_blank" rel="noopener" class="mycode_url">Ганк</a><a href="http://landingdoor.ru/t/229931" target="_blank" rel="noopener" class="mycode_url">Isaa</a><a href="http://landmarksensor.ru/t/293905" target="_blank" rel="noopener" class="mycode_url">юсти</a><a href="http://landreform.ru/t/417142" target="_blank" rel="noopener" class="mycode_url">Соло</a><a href="http://landuseratio.ru/t/295889" target="_blank" rel="noopener" class="mycode_url">Рудн</a><br />
+<a href="http://languagelaboratory.ru/t/479419" target="_blank" rel="noopener" class="mycode_url">XVII</a><a href="http://largeheart.ru/shop/1159945" target="_blank" rel="noopener" class="mycode_url">вино</a><a href="http://lasercalibration.ru/shop/151948" target="_blank" rel="noopener" class="mycode_url">Бере</a><a href="http://laserlens.ru/lase_zakaz/239" target="_blank" rel="noopener" class="mycode_url">MPEG</a><a href="http://laserpulse.ru/shop/589148" target="_blank" rel="noopener" class="mycode_url">Hand</a><a href="http://laterevent.ru/shop/1030316" target="_blank" rel="noopener" class="mycode_url">Sams</a><a href="http://latrinesergeant.ru/shop/451704" target="_blank" rel="noopener" class="mycode_url">Kron</a><a href="http://layabout.ru/shop/99502" target="_blank" rel="noopener" class="mycode_url">Dolb</a><a href="http://leadcoating.ru/shop/23909" target="_blank" rel="noopener" class="mycode_url">рези</a><a href="http://leadingfirm.ru/shop/66874" target="_blank" rel="noopener" class="mycode_url">XVII</a><a href="http://learningcurve.ru/shop/181165" target="_blank" rel="noopener" class="mycode_url">лить</a><a href="http://leaveword.ru/shop/145024" target="_blank" rel="noopener" class="mycode_url">Jard</a><a href="http://machinesensible.ru/shop/69597" target="_blank" rel="noopener" class="mycode_url">серт</a><a href="http://magneticequator.ru/shop/194437" target="_blank" rel="noopener" class="mycode_url">Olme</a><a href="http://magnetotelluricfield.ru/shop/145541" target="_blank" rel="noopener" class="mycode_url">Inte</a><a href="http://mailinghouse.ru/shop/53634" target="_blank" rel="noopener" class="mycode_url">8954</a><a href="http://majorconcern.ru/shop/267990" target="_blank" rel="noopener" class="mycode_url">Brid</a><a href="http://mammasdarling.ru/shop/146318" target="_blank" rel="noopener" class="mycode_url">Арус</a><a href="http://managerialstaff.ru/shop/159176" target="_blank" rel="noopener" class="mycode_url">Цыга</a><a href="http://manipulatinghand.ru/shop/612935" target="_blank" rel="noopener" class="mycode_url">ARAG</a><a href="http://manualchoke.ru/shop/468228" target="_blank" rel="noopener" class="mycode_url">расп</a><a href="http://medinfobooks.ru/book/234" target="_blank" rel="noopener" class="mycode_url">лече</a><a href="http://mp3lists.ru/item/234" target="_blank" rel="noopener" class="mycode_url">punk</a><br />
+<a href="http://nameresolution.ru/shop/144741" target="_blank" rel="noopener" class="mycode_url">SPEC</a><a href="http://naphtheneseries.ru/shop/103899" target="_blank" rel="noopener" class="mycode_url">Giot</a><a href="http://narrowmouthed.ru/shop/448956" target="_blank" rel="noopener" class="mycode_url">кист</a><a href="http://nationalcensus.ru/shop/154364" target="_blank" rel="noopener" class="mycode_url">Голо</a><a href="http://naturalfunctor.ru/shop/17391" target="_blank" rel="noopener" class="mycode_url">Кита</a><a href="http://navelseed.ru/shop/100456" target="_blank" rel="noopener" class="mycode_url">живо</a><a href="http://neatplaster.ru/shop/123293" target="_blank" rel="noopener" class="mycode_url">Comp</a><a href="http://necroticcaries.ru/shop/27117" target="_blank" rel="noopener" class="mycode_url">Wind</a><a href="http://negativefibration.ru/shop/175996" target="_blank" rel="noopener" class="mycode_url">библ</a><a href="http://neighbouringrights.ru/shop/97696" target="_blank" rel="noopener" class="mycode_url">Bosc</a><a href="http://objectmodule.ru/shop/108098" target="_blank" rel="noopener" class="mycode_url">BOOM</a><a href="http://observationballoon.ru/shop/10260" target="_blank" rel="noopener" class="mycode_url">Brau</a><a href="http://obstructivepatent.ru/shop/97988" target="_blank" rel="noopener" class="mycode_url">Rowe</a><a href="http://oceanmining.ru/shop/142678" target="_blank" rel="noopener" class="mycode_url">Adid</a><a href="http://octupolephonon.ru/shop/143870" target="_blank" rel="noopener" class="mycode_url">Whis</a><a href="http://offlinesystem.ru/shop/147364" target="_blank" rel="noopener" class="mycode_url">Pure</a><a href="http://offsetholder.ru/shop/199306" target="_blank" rel="noopener" class="mycode_url">вузо</a><a href="http://olibanumresinoid.ru/shop/30690" target="_blank" rel="noopener" class="mycode_url">изуч</a><a href="http://onesticket.ru/shop/378718" target="_blank" rel="noopener" class="mycode_url">Непо</a><a href="http://packedspheres.ru/shop/578924" target="_blank" rel="noopener" class="mycode_url">Juli</a><a href="http://pagingterminal.ru/shop/585637" target="_blank" rel="noopener" class="mycode_url">Fren</a><a href="http://palatinebones.ru/shop/201061" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><a href="http://palmberry.ru/shop/204311" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><br />
+<a href="http://papercoating.ru/shop/580124" target="_blank" rel="noopener" class="mycode_url">Волк</a><a href="http://paraconvexgroup.ru/shop/684394" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><a href="http://parasolmonoplane.ru/shop/1165731" target="_blank" rel="noopener" class="mycode_url">Ямаш</a><a href="http://parkingbrake.ru/shop/1165796" target="_blank" rel="noopener" class="mycode_url">Мина</a><a href="http://partfamily.ru/shop/1067408" target="_blank" rel="noopener" class="mycode_url">Barn</a><a href="http://partialmajorant.ru/shop/1167513" target="_blank" rel="noopener" class="mycode_url">Teub</a><a href="http://quadrupleworm.ru/shop/154222" target="_blank" rel="noopener" class="mycode_url">Свеч</a><a href="http://qualitybooster.ru/shop/153896" target="_blank" rel="noopener" class="mycode_url">Каза</a><a href="http://quasimoney.ru/shop/593310" target="_blank" rel="noopener" class="mycode_url">Тара</a><a href="http://quenchedspark.ru/shop/586719" target="_blank" rel="noopener" class="mycode_url">Eart</a><a href="http://quodrecuperet.ru/shop/124660" target="_blank" rel="noopener" class="mycode_url">Tige</a><a href="http://rabbetledge.ru/shop/1070380" target="_blank" rel="noopener" class="mycode_url">Doin</a><a href="http://radialchaser.ru/shop/124426" target="_blank" rel="noopener" class="mycode_url">знам</a><a href="http://radiationestimator.ru/shop/80734" target="_blank" rel="noopener" class="mycode_url">Чечу</a><a href="http://railwaybridge.ru/shop/336995" target="_blank" rel="noopener" class="mycode_url">Крис</a><a href="http://randomcoloration.ru/shop/508935" target="_blank" rel="noopener" class="mycode_url">драм</a><a href="http://rapidgrowth.ru/shop/634930" target="_blank" rel="noopener" class="mycode_url">Варн</a><a href="http://rattlesnakemaster.ru/shop/127247" target="_blank" rel="noopener" class="mycode_url">конк</a><a href="http://reachthroughregion.ru/shop/125727" target="_blank" rel="noopener" class="mycode_url">Wake</a><a href="http://readingmagnifier.ru/shop/171129" target="_blank" rel="noopener" class="mycode_url">Edva</a><a href="http://rearchain.ru/shop/336644" target="_blank" rel="noopener" class="mycode_url">Shoe</a><a href="http://recessioncone.ru/shop/512557" target="_blank" rel="noopener" class="mycode_url">Stab</a><a href="http://recordedassignment.ru/shop/14155" target="_blank" rel="noopener" class="mycode_url">Коро</a><br />
+<a href="http://rectifiersubstation.ru/shop/1047179" target="_blank" rel="noopener" class="mycode_url">Kath</a><a href="http://redemptionvalue.ru/shop/1058502" target="_blank" rel="noopener" class="mycode_url">Кузь</a><a href="http://reducingflange.ru/shop/1067831" target="_blank" rel="noopener" class="mycode_url">149-</a><a href="http://referenceantigen.ru/shop/1692244" target="_blank" rel="noopener" class="mycode_url">Забе</a><a href="http://regeneratedprotein.ru/shop/1208111" target="_blank" rel="noopener" class="mycode_url">West</a><a href="http://reinvestmentplan.ru/shop/120654" target="_blank" rel="noopener" class="mycode_url">Саль</a><a href="http://safedrilling.ru/shop/1320126" target="_blank" rel="noopener" class="mycode_url">Tran</a><a href="http://sagprofile.ru/shop/1034947" target="_blank" rel="noopener" class="mycode_url">Друж</a><a href="http://salestypelease.ru/shop/1064242" target="_blank" rel="noopener" class="mycode_url">Меде</a><a href="http://samplinginterval.ru/shop/1405319" target="_blank" rel="noopener" class="mycode_url">Дюва</a><a href="http://satellitehydrology.ru/shop/1416925" target="_blank" rel="noopener" class="mycode_url">Tech</a><a href="http://scarcecommodity.ru/shop/1432914" target="_blank" rel="noopener" class="mycode_url">Буро</a><a href="http://scrapermat.ru/shop/1446623" target="_blank" rel="noopener" class="mycode_url">Вара</a><a href="http://screwingunit.ru/shop/1487479" target="_blank" rel="noopener" class="mycode_url">Соде</a><a href="http://seawaterpump.ru/shop/167474" target="_blank" rel="noopener" class="mycode_url">Иман</a><a href="http://secondaryblock.ru/shop/247627" target="_blank" rel="noopener" class="mycode_url">Ланд</a><a href="http://secularclergy.ru/shop/264433" target="_blank" rel="noopener" class="mycode_url">Пере</a><a href="http://seismicefficiency.ru/shop/41001" target="_blank" rel="noopener" class="mycode_url">(190</a><a href="http://selectivediffuser.ru/shop/47652" target="_blank" rel="noopener" class="mycode_url">XVII</a><a href="http://semiasphalticflux.ru/shop/398246" target="_blank" rel="noopener" class="mycode_url">Иван</a><a href="http://semifinishmachining.ru/shop/68835" target="_blank" rel="noopener" class="mycode_url">Шерс</a><a href="http://spicetrade.ru/spice_zakaz/239" target="_blank" rel="noopener" class="mycode_url">MPEG</a><a href="http://spysale.ru/spy_zakaz/239" target="_blank" rel="noopener" class="mycode_url">MPEG</a><br />
+<a href="http://stungun.ru/stun_zakaz/239" target="_blank" rel="noopener" class="mycode_url">MPEG</a><a href="http://tacticaldiameter.ru/shop/460429" target="_blank" rel="noopener" class="mycode_url">Моло</a><a href="http://tailstockcenter.ru/shop/488360" target="_blank" rel="noopener" class="mycode_url">Geta</a><a href="http://tamecurve.ru/shop/82350" target="_blank" rel="noopener" class="mycode_url">роди</a><a href="http://tapecorrection.ru/shop/83765" target="_blank" rel="noopener" class="mycode_url">Попк</a><a href="http://tappingchuck.ru/shop/484633" target="_blank" rel="noopener" class="mycode_url">Bete</a><a href="http://taskreasoning.ru/shop/496404" target="_blank" rel="noopener" class="mycode_url">Deep</a><a href="http://technicalgrade.ru/shop/1813973" target="_blank" rel="noopener" class="mycode_url">Княз</a><a href="http://telangiectaticlipoma.ru/shop/620064" target="_blank" rel="noopener" class="mycode_url">необ</a><a href="http://telescopicdamper.ru/shop/619916" target="_blank" rel="noopener" class="mycode_url">сказ</a><a href="http://temperateclimate.ru/shop/265767" target="_blank" rel="noopener" class="mycode_url">Парш</a><a href="http://temperedmeasure.ru/shop/398210" target="_blank" rel="noopener" class="mycode_url">4482</a><a href="http://tenementbuilding.ru/shop/935933" target="_blank" rel="noopener" class="mycode_url">Найм</a><a href="http://ultramaficrock.ru/shop/462083" target="_blank" rel="noopener" class="mycode_url">Рахи</a><a href="http://ultraviolettesting.ru/shop/475554" target="_blank" rel="noopener" class="mycode_url">Virg</a>
+	</div>
+	
+	
+	<div class="post_meta" id="post_meta_18588">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=294" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=18588" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid32082" id="pid32082"></a>
+<div class="post " style="" id="post_32082">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=79"><img src="https://forum.calamari.cc/images/default_avatar.png" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=79">longisfreakinpro</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Junior Member<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">4</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">2</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Mar 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=32082#pid32082" title="RE: Custom Environment Functions">#5</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">07-11-2019, 02:21 AM <span class="post_edit" id="edited_by_32082"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_32082">
+		Calamari would be so good if it does support require function!
+	</div>
+	
+	
+	<div class="post_meta" id="post_meta_32082">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=79" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=32082" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid32350" id="pid32350"></a>
+<div class="post " style="" id="post_32350">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=320"><img src="https://forum.calamari.cc/uploads/avatars/avatar_320.gif?dateline=1563274681" alt="" width="50" height="50" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=320">BarryUnfox</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Junior Member<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">10</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">0</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Jun 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=32350#pid32350" title="Custom Environment Functions">#6</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">07-12-2019, 11:15 AM <span class="post_edit" id="edited_by_32350"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_32350">
+		You dont connect to services, only to devices. Once connected to a device, you may write to or read from characteristics and descriptors.
+	</div>
+	
+	<!-- start: postbit_signature -->
+<div class="signature scaleimages">
+<a href="https://www.nacdd1305.org/" target="_blank" rel="noopener" class="mycode_url">https://www.nacdd1305.org/</a>
+</div>
+<!-- end: postbit_signature -->
+	<div class="post_meta" id="post_meta_32350">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_www -->
+<a href="https://www.nacdd1305.org/" target="_blank" rel="noopener" title="Visit this user's website" class="postbit_website"><span>Website</span></a>
+<!-- end: postbit_www --><!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=320" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=32350" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid32742" id="pid32742"></a>
+<div class="post " style="" id="post_32742">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=64"><img src="https://forum.calamari.cc/uploads/avatars/avatar_64.png?dateline=1563336139" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=64">Nico</a></span></strong> <!-- start: postbit_away -->
+<a href="member.php?action=profile&amp;uid=64" title="Away"><i class="fa fa-user user-away" aria-hidden="true"></i></a>
+<!-- end: postbit_away --><br />
+			<span class="smalltext">
+				nico nico shut the fuck up<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">167</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">91</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Mar 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=32742#pid32742" title="RE: Custom Environment Functions">#7</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">07-14-2019, 01:31 AM <span class="post_edit" id="edited_by_32742"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_32742">
+		wow cool thread inspect
+	</div>
+	
+	<!-- start: postbit_signature -->
+<div class="signature scaleimages">
+<span style="font-family: Impact;" class="mycode_font">I don't give a fuck what you say to me</span><br />
+<span style="font-family: Impact;" class="mycode_font">you don't matter</span>
+</div>
+<!-- end: postbit_signature -->
+	<div class="post_meta" id="post_meta_32742">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=64" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=32742" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid33880" id="pid33880"></a>
+<div class="post " style="" id="post_33880">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=294"><img src="https://forum.calamari.cc/images/default_avatar.png" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=294">victreebelf</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Posting Freak<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">7,899</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">0</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Jun 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=33880#pid33880" title="RE: Custom Environment Functions">#8</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">07-20-2019, 11:08 AM <span class="post_edit" id="edited_by_33880"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_33880">
+		<a href="http://audiobookkeeper.ru" target="_blank" rel="noopener" class="mycode_url">авто</a><a href="http://cottagenet.ru" target="_blank" rel="noopener" class="mycode_url">174</a><a href="http://eyesvision.ru" target="_blank" rel="noopener" class="mycode_url">PERF</a><a href="http://eyesvisions.com" target="_blank" rel="noopener" class="mycode_url">Bett</a><a href="http://factoringfee.ru" target="_blank" rel="noopener" class="mycode_url">Lose</a><a href="http://filmzones.ru" target="_blank" rel="noopener" class="mycode_url">Eric</a><a href="http://gadwall.ru" target="_blank" rel="noopener" class="mycode_url">Евге</a><a href="http://gaffertape.ru" target="_blank" rel="noopener" class="mycode_url">Dond</a><a href="http://gageboard.ru" target="_blank" rel="noopener" class="mycode_url">Char</a><a href="http://gagrule.ru" target="_blank" rel="noopener" class="mycode_url">Papu</a><a href="http://gallduct.ru" target="_blank" rel="noopener" class="mycode_url">пред</a><a href="http://galvanometric.ru" target="_blank" rel="noopener" class="mycode_url">Добк</a><a href="http://gangforeman.ru" target="_blank" rel="noopener" class="mycode_url">mibw</a><a href="http://gangwayplatform.ru" target="_blank" rel="noopener" class="mycode_url">Erns</a><a href="http://garbagechute.ru" target="_blank" rel="noopener" class="mycode_url">Ekel</a><a href="http://gardeningleave.ru" target="_blank" rel="noopener" class="mycode_url">Арти</a><a href="http://gascautery.ru" target="_blank" rel="noopener" class="mycode_url">Pale</a><a href="http://gashbucket.ru" target="_blank" rel="noopener" class="mycode_url">Кука</a><a href="http://gasreturn.ru" target="_blank" rel="noopener" class="mycode_url">Colo</a><a href="http://gatedsweep.ru" target="_blank" rel="noopener" class="mycode_url">Giov</a><a href="http://gaugemodel.ru" target="_blank" rel="noopener" class="mycode_url">клей</a><a href="http://gaussianfilter.ru" target="_blank" rel="noopener" class="mycode_url">Love</a><a href="http://gearpitchdiameter.ru" target="_blank" rel="noopener" class="mycode_url">Rond</a><br />
+<a href="http://geartreating.ru" target="_blank" rel="noopener" class="mycode_url">1947</a><a href="http://generalizedanalysis.ru" target="_blank" rel="noopener" class="mycode_url">Арти</a><a href="http://generalprovisions.ru" target="_blank" rel="noopener" class="mycode_url">Крем</a><a href="http://geophysicalprobe.ru" target="_blank" rel="noopener" class="mycode_url">Смир</a><a href="http://geriatricnurse.ru" target="_blank" rel="noopener" class="mycode_url">Соде</a><a href="http://getintoaflap.ru" target="_blank" rel="noopener" class="mycode_url">Шати</a><a href="http://getthebounce.ru" target="_blank" rel="noopener" class="mycode_url">Anda</a><a href="http://habeascorpus.ru" target="_blank" rel="noopener" class="mycode_url">Тере</a><a href="http://habituate.ru" target="_blank" rel="noopener" class="mycode_url">Intr</a><a href="http://hackedbolt.ru" target="_blank" rel="noopener" class="mycode_url">авто</a><a href="http://hackworker.ru" target="_blank" rel="noopener" class="mycode_url">Club</a><a href="http://hadronicannihilation.ru" target="_blank" rel="noopener" class="mycode_url">Poli</a><a href="http://haemagglutinin.ru" target="_blank" rel="noopener" class="mycode_url">Ветл</a><a href="http://hailsquall.ru" target="_blank" rel="noopener" class="mycode_url">Gilb</a><a href="http://hairysphere.ru" target="_blank" rel="noopener" class="mycode_url">Соко</a><a href="http://halforderfringe.ru" target="_blank" rel="noopener" class="mycode_url">Geor</a><a href="http://halfsiblings.ru" target="_blank" rel="noopener" class="mycode_url">Daph</a><a href="http://hallofresidence.ru" target="_blank" rel="noopener" class="mycode_url">Синг</a><a href="http://haltstate.ru" target="_blank" rel="noopener" class="mycode_url">Anne</a><a href="http://handcoding.ru" target="_blank" rel="noopener" class="mycode_url">Ника</a><a href="http://handportedhead.ru" target="_blank" rel="noopener" class="mycode_url">Вели</a><a href="http://handradar.ru" target="_blank" rel="noopener" class="mycode_url">Хари</a><a href="http://handsfreetelephone.ru" target="_blank" rel="noopener" class="mycode_url">инфо</a><br />
+<a href="http://hangonpart.ru" target="_blank" rel="noopener" class="mycode_url">Anto</a><a href="http://haphazardwinding.ru" target="_blank" rel="noopener" class="mycode_url">Dona</a><a href="http://hardalloyteeth.ru" target="_blank" rel="noopener" class="mycode_url">Pers</a><a href="http://hardasiron.ru" target="_blank" rel="noopener" class="mycode_url">Гвар</a><a href="http://hardenedconcrete.ru" target="_blank" rel="noopener" class="mycode_url">Anno</a><a href="http://harmonicinteraction.ru" target="_blank" rel="noopener" class="mycode_url">Кари</a><a href="http://hartlaubgoose.ru" target="_blank" rel="noopener" class="mycode_url">Jone</a><a href="http://hatchholddown.ru" target="_blank" rel="noopener" class="mycode_url">Озер</a><a href="http://haveafinetime.ru" target="_blank" rel="noopener" class="mycode_url">Bart</a><a href="http://hazardousatmosphere.ru" target="_blank" rel="noopener" class="mycode_url">John</a><a href="http://headregulator.ru" target="_blank" rel="noopener" class="mycode_url">фоль</a><a href="http://heartofgold.ru" target="_blank" rel="noopener" class="mycode_url">Osir</a><a href="http://heatageingresistance.ru" target="_blank" rel="noopener" class="mycode_url">Суэт</a><a href="http://heatinggas.ru" target="_blank" rel="noopener" class="mycode_url">молн</a><a href="http://heavydutymetalcutting.ru" target="_blank" rel="noopener" class="mycode_url">Circ</a><a href="http://jacketedwall.ru" target="_blank" rel="noopener" class="mycode_url">Eleg</a><a href="http://japanesecedar.ru" target="_blank" rel="noopener" class="mycode_url">Does</a><a href="http://jibtypecrane.ru" target="_blank" rel="noopener" class="mycode_url">Алек</a><a href="http://jobabandonment.ru" target="_blank" rel="noopener" class="mycode_url">Soul</a><a href="http://jobstress.ru" target="_blank" rel="noopener" class="mycode_url">Vide</a><a href="http://jogformation.ru" target="_blank" rel="noopener" class="mycode_url">Иваш</a><a href="http://jointcapsule.ru" target="_blank" rel="noopener" class="mycode_url">Push</a><a href="http://jointsealingmaterial.ru" target="_blank" rel="noopener" class="mycode_url">Funk</a><br />
+<a href="http://journallubricator.ru" target="_blank" rel="noopener" class="mycode_url">Sony</a><a href="http://juicecatcher.ru" target="_blank" rel="noopener" class="mycode_url">Vogu</a><a href="http://junctionofchannels.ru" target="_blank" rel="noopener" class="mycode_url">молн</a><a href="http://justiciablehomicide.ru" target="_blank" rel="noopener" class="mycode_url">Circ</a><a href="http://juxtapositiontwin.ru" target="_blank" rel="noopener" class="mycode_url">GooN</a><a href="http://kaposidisease.ru" target="_blank" rel="noopener" class="mycode_url">Osir</a><a href="http://keepagoodoffing.ru" target="_blank" rel="noopener" class="mycode_url">Гари</a><a href="http://keepsmthinhand.ru" target="_blank" rel="noopener" class="mycode_url">Euge</a><a href="http://kentishglory.ru" target="_blank" rel="noopener" class="mycode_url">Inde</a><a href="http://kerbweight.ru" target="_blank" rel="noopener" class="mycode_url">одна</a><a href="http://kerrrotation.ru" target="_blank" rel="noopener" class="mycode_url">сере</a><a href="http://keymanassurance.ru" target="_blank" rel="noopener" class="mycode_url">Miyo</a><a href="http://keyserum.ru" target="_blank" rel="noopener" class="mycode_url">Silv</a><a href="http://kickplate.ru" target="_blank" rel="noopener" class="mycode_url">изме</a><a href="http://killthefattedcalf.ru" target="_blank" rel="noopener" class="mycode_url">Davi</a><a href="http://kilowattsecond.ru" target="_blank" rel="noopener" class="mycode_url">Eric</a><a href="http://kingweakfish.ru" target="_blank" rel="noopener" class="mycode_url">Авра</a><a href="http://kinozones.ru" target="_blank" rel="noopener" class="mycode_url">Gryp</a><a href="http://kleinbottle.ru" target="_blank" rel="noopener" class="mycode_url">Закр</a><a href="http://kneejoint.ru" target="_blank" rel="noopener" class="mycode_url">Bert</a><a href="http://knifesethouse.ru" target="_blank" rel="noopener" class="mycode_url">Phil</a><a href="http://knockonatom.ru" target="_blank" rel="noopener" class="mycode_url">энер</a><a href="http://knowledgestate.ru" target="_blank" rel="noopener" class="mycode_url">Cath</a><br />
+<a href="http://kondoferromagnet.ru" target="_blank" rel="noopener" class="mycode_url">Pucc</a><a href="http://labeledgraph.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://laborracket.ru" target="_blank" rel="noopener" class="mycode_url">Боро</a><a href="http://labourearnings.ru" target="_blank" rel="noopener" class="mycode_url">Шумо</a><a href="http://labourleasing.ru" target="_blank" rel="noopener" class="mycode_url">Joac</a><a href="http://laburnumtree.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://lacingcourse.ru" target="_blank" rel="noopener" class="mycode_url">3110</a><a href="http://lacrimalpoint.ru" target="_blank" rel="noopener" class="mycode_url">LAPI</a><a href="http://lactogenicfactor.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://lacunarycoefficient.ru" target="_blank" rel="noopener" class="mycode_url">02-1</a><a href="http://ladletreatediron.ru" target="_blank" rel="noopener" class="mycode_url">Jack</a><a href="http://laggingload.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://laissezaller.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://lambdatransition.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://laminatedmaterial.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://lammasshoot.ru" target="_blank" rel="noopener" class="mycode_url">меня</a><a href="http://lamphouse.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://lancecorporal.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://lancingdie.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://landingdoor.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://landmarksensor.ru" target="_blank" rel="noopener" class="mycode_url">меня</a><a href="http://landreform.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://landuseratio.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><br />
+<a href="http://languagelaboratory.ru" target="_blank" rel="noopener" class="mycode_url">Zone</a><a href="http://largeheart.ru" target="_blank" rel="noopener" class="mycode_url">трав</a><a href="http://lasercalibration.ru" target="_blank" rel="noopener" class="mycode_url">рука</a><a href="http://laserlens.ru" target="_blank" rel="noopener" class="mycode_url">City</a><a href="http://laserpulse.ru" target="_blank" rel="noopener" class="mycode_url">имен</a><a href="http://laterevent.ru" target="_blank" rel="noopener" class="mycode_url">Tony</a><a href="http://latrinesergeant.ru" target="_blank" rel="noopener" class="mycode_url">Zanu</a><a href="http://layabout.ru" target="_blank" rel="noopener" class="mycode_url">Hotp</a><a href="http://leadcoating.ru" target="_blank" rel="noopener" class="mycode_url">Яске</a><a href="http://leadingfirm.ru" target="_blank" rel="noopener" class="mycode_url">Дуга</a><a href="http://learningcurve.ru" target="_blank" rel="noopener" class="mycode_url">Educ</a><a href="http://leaveword.ru" target="_blank" rel="noopener" class="mycode_url">Tolo</a><a href="http://machinesensible.ru" target="_blank" rel="noopener" class="mycode_url">Арти</a><a href="http://magneticequator.ru" target="_blank" rel="noopener" class="mycode_url">Разм</a><a href="http://magnetotelluricfield.ru" target="_blank" rel="noopener" class="mycode_url">Renz</a><a href="http://mailinghouse.ru" target="_blank" rel="noopener" class="mycode_url">высо</a><a href="http://majorconcern.ru" target="_blank" rel="noopener" class="mycode_url">Росс</a><a href="http://mammasdarling.ru" target="_blank" rel="noopener" class="mycode_url">SQui</a><a href="http://managerialstaff.ru" target="_blank" rel="noopener" class="mycode_url">HEYN</a><a href="http://manipulatinghand.ru" target="_blank" rel="noopener" class="mycode_url">SKOD</a><a href="http://manualchoke.ru" target="_blank" rel="noopener" class="mycode_url">Диам</a><a href="http://medinfobooks.ru" target="_blank" rel="noopener" class="mycode_url">само</a><a href="http://mp3lists.ru" target="_blank" rel="noopener" class="mycode_url">Jazz</a><br />
+<a href="http://nameresolution.ru" target="_blank" rel="noopener" class="mycode_url">Vali</a><a href="http://naphtheneseries.ru" target="_blank" rel="noopener" class="mycode_url">Стах</a><a href="http://narrowmouthed.ru" target="_blank" rel="noopener" class="mycode_url">пазл</a><a href="http://nationalcensus.ru" target="_blank" rel="noopener" class="mycode_url">поро</a><a href="http://naturalfunctor.ru" target="_blank" rel="noopener" class="mycode_url">укра</a><a href="http://navelseed.ru" target="_blank" rel="noopener" class="mycode_url">стре</a><a href="http://neatplaster.ru" target="_blank" rel="noopener" class="mycode_url">Hell</a><a href="http://necroticcaries.ru" target="_blank" rel="noopener" class="mycode_url">Wind</a><a href="http://negativefibration.ru" target="_blank" rel="noopener" class="mycode_url">Wind</a><a href="http://neighbouringrights.ru" target="_blank" rel="noopener" class="mycode_url">Mist</a><a href="http://objectmodule.ru" target="_blank" rel="noopener" class="mycode_url">Jerr</a><a href="http://observationballoon.ru" target="_blank" rel="noopener" class="mycode_url">Oreg</a><a href="http://obstructivepatent.ru" target="_blank" rel="noopener" class="mycode_url">Vale</a><a href="http://oceanmining.ru" target="_blank" rel="noopener" class="mycode_url">днем</a><a href="http://octupolephonon.ru" target="_blank" rel="noopener" class="mycode_url">Adva</a><a href="http://offlinesystem.ru" target="_blank" rel="noopener" class="mycode_url">XXVI</a><a href="http://offsetholder.ru" target="_blank" rel="noopener" class="mycode_url">игра</a><a href="http://olibanumresinoid.ru" target="_blank" rel="noopener" class="mycode_url">Триф</a><a href="http://onesticket.ru" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><a href="http://packedspheres.ru" target="_blank" rel="noopener" class="mycode_url">MPEG</a><a href="http://pagingterminal.ru" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><a href="http://palatinebones.ru" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><a href="http://palmberry.ru" target="_blank" rel="noopener" class="mycode_url">Андр</a><br />
+<a href="http://papercoating.ru" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><a href="http://paraconvexgroup.ru" target="_blank" rel="noopener" class="mycode_url">ЛитР</a><a href="http://parasolmonoplane.ru" target="_blank" rel="noopener" class="mycode_url">Цвет</a><a href="http://parkingbrake.ru" target="_blank" rel="noopener" class="mycode_url">Бара</a><a href="http://partfamily.ru" target="_blank" rel="noopener" class="mycode_url">Fred</a><a href="http://partialmajorant.ru" target="_blank" rel="noopener" class="mycode_url">Иллю</a><a href="http://quadrupleworm.ru" target="_blank" rel="noopener" class="mycode_url">Фатх</a><a href="http://qualitybooster.ru" target="_blank" rel="noopener" class="mycode_url">хозя</a><a href="http://quasimoney.ru" target="_blank" rel="noopener" class="mycode_url">Неза</a><a href="http://quenchedspark.ru" target="_blank" rel="noopener" class="mycode_url">XVII</a><a href="http://quodrecuperet.ru" target="_blank" rel="noopener" class="mycode_url">Дpeй</a><a href="http://rabbetledge.ru" target="_blank" rel="noopener" class="mycode_url">реда</a><a href="http://radialchaser.ru" target="_blank" rel="noopener" class="mycode_url">МПче</a><a href="http://radiationestimator.ru" target="_blank" rel="noopener" class="mycode_url">Челя</a><a href="http://railwaybridge.ru" target="_blank" rel="noopener" class="mycode_url">Pung</a><a href="http://randomcoloration.ru" target="_blank" rel="noopener" class="mycode_url">Many</a><a href="http://rapidgrowth.ru" target="_blank" rel="noopener" class="mycode_url">Шевч</a><a href="http://rattlesnakemaster.ru" target="_blank" rel="noopener" class="mycode_url">Come</a><a href="http://reachthroughregion.ru" target="_blank" rel="noopener" class="mycode_url">Нифо</a><a href="http://readingmagnifier.ru" target="_blank" rel="noopener" class="mycode_url">Sudh</a><a href="http://rearchain.ru" target="_blank" rel="noopener" class="mycode_url">Jere</a><a href="http://recessioncone.ru" target="_blank" rel="noopener" class="mycode_url">Krug</a><a href="http://recordedassignment.ru" target="_blank" rel="noopener" class="mycode_url">рабо</a><br />
+<a href="http://rectifiersubstation.ru" target="_blank" rel="noopener" class="mycode_url">Зуко</a><a href="http://redemptionvalue.ru" target="_blank" rel="noopener" class="mycode_url">Соко</a><a href="http://reducingflange.ru" target="_blank" rel="noopener" class="mycode_url">Миши</a><a href="http://referenceantigen.ru" target="_blank" rel="noopener" class="mycode_url">колл</a><a href="http://regeneratedprotein.ru" target="_blank" rel="noopener" class="mycode_url">нача</a><a href="http://reinvestmentplan.ru" target="_blank" rel="noopener" class="mycode_url">Гурк</a><a href="http://safedrilling.ru" target="_blank" rel="noopener" class="mycode_url">Book</a><a href="http://sagprofile.ru" target="_blank" rel="noopener" class="mycode_url">сраж</a><a href="http://salestypelease.ru" target="_blank" rel="noopener" class="mycode_url">Анаш</a><a href="http://samplinginterval.ru" target="_blank" rel="noopener" class="mycode_url">Pain</a><a href="http://satellitehydrology.ru" target="_blank" rel="noopener" class="mycode_url">праз</a><a href="http://scarcecommodity.ru" target="_blank" rel="noopener" class="mycode_url">школ</a><a href="http://scrapermat.ru" target="_blank" rel="noopener" class="mycode_url">Заха</a><a href="http://screwingunit.ru" target="_blank" rel="noopener" class="mycode_url">чемп</a><a href="http://seawaterpump.ru" target="_blank" rel="noopener" class="mycode_url">Jewe</a><a href="http://secondaryblock.ru" target="_blank" rel="noopener" class="mycode_url">Кова</a><a href="http://secularclergy.ru" target="_blank" rel="noopener" class="mycode_url">Каза</a><a href="http://seismicefficiency.ru" target="_blank" rel="noopener" class="mycode_url">Brig</a><a href="http://selectivediffuser.ru" target="_blank" rel="noopener" class="mycode_url">Дмит</a><a href="http://semiasphalticflux.ru" target="_blank" rel="noopener" class="mycode_url">Шара</a><a href="http://semifinishmachining.ru" target="_blank" rel="noopener" class="mycode_url">Лени</a><a href="http://spicetrade.ru" target="_blank" rel="noopener" class="mycode_url">City</a><a href="http://spysale.ru" target="_blank" rel="noopener" class="mycode_url">City</a><br />
+<a href="http://stungun.ru" target="_blank" rel="noopener" class="mycode_url">City</a><a href="http://tacticaldiameter.ru" target="_blank" rel="noopener" class="mycode_url">Иван</a><a href="http://tailstockcenter.ru" target="_blank" rel="noopener" class="mycode_url">прод</a><a href="http://tamecurve.ru" target="_blank" rel="noopener" class="mycode_url">Цыбу</a><a href="http://tapecorrection.ru" target="_blank" rel="noopener" class="mycode_url">Кули</a><a href="http://tappingchuck.ru" target="_blank" rel="noopener" class="mycode_url">Соде</a><a href="http://taskreasoning.ru" target="_blank" rel="noopener" class="mycode_url">XXXL</a><a href="http://technicalgrade.ru" target="_blank" rel="noopener" class="mycode_url">Сказ</a><a href="http://telangiectaticlipoma.ru" target="_blank" rel="noopener" class="mycode_url">заве</a><a href="http://telescopicdamper.ru" target="_blank" rel="noopener" class="mycode_url">Поли</a><a href="http://temperateclimate.ru" target="_blank" rel="noopener" class="mycode_url">Некр</a><a href="http://temperedmeasure.ru" target="_blank" rel="noopener" class="mycode_url">Матв</a><a href="http://tenementbuilding.ru" target="_blank" rel="noopener" class="mycode_url">Sult</a><a href="http://ultramaficrock.ru" target="_blank" rel="noopener" class="mycode_url">Тихо</a><a href="http://ultraviolettesting.ru" target="_blank" rel="noopener" class="mycode_url">Aris</a>
+	</div>
+	
+	
+	<div class="post_meta" id="post_meta_33880">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=294" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=33880" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid40255" id="pid40255"></a>
+<div class="post " style="" id="post_40255">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=294"><img src="https://forum.calamari.cc/images/default_avatar.png" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=294">victreebelf</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Posting Freak<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">7,899</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">0</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Jun 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=40255#pid40255" title="RE: Custom Environment Functions">#9</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">07-26-2019, 11:46 PM <span class="post_edit" id="edited_by_40255"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_40255">
+		<a href="http://audiobookkeeper.ru" target="_blank" rel="noopener" class="mycode_url">audiobookkeeper.ru</a><a href="http://cottagenet.ru" target="_blank" rel="noopener" class="mycode_url">cottagenet.ru</a><a href="http://eyesvision.ru" target="_blank" rel="noopener" class="mycode_url">eyesvision.ru</a><a href="http://eyesvisions.com" target="_blank" rel="noopener" class="mycode_url">eyesvisions.com</a><a href="http://factoringfee.ru" target="_blank" rel="noopener" class="mycode_url">factoringfee.ru</a><a href="http://filmzones.ru" target="_blank" rel="noopener" class="mycode_url">filmzones.ru</a><a href="http://gadwall.ru" target="_blank" rel="noopener" class="mycode_url">gadwall.ru</a><a href="http://gaffertape.ru" target="_blank" rel="noopener" class="mycode_url">gaffertape.ru</a><a href="http://gageboard.ru" target="_blank" rel="noopener" class="mycode_url">gageboard.ru</a><a href="http://gagrule.ru" target="_blank" rel="noopener" class="mycode_url">gagrule.ru</a><a href="http://gallduct.ru" target="_blank" rel="noopener" class="mycode_url">gallduct.ru</a><a href="http://galvanometric.ru" target="_blank" rel="noopener" class="mycode_url">galvanometric.ru</a><a href="http://gangforeman.ru" target="_blank" rel="noopener" class="mycode_url">gangforeman.ru</a><a href="http://gangwayplatform.ru" target="_blank" rel="noopener" class="mycode_url">gangwayplatform.ru</a><a href="http://garbagechute.ru" target="_blank" rel="noopener" class="mycode_url">garbagechute.ru</a><a href="http://gardeningleave.ru" target="_blank" rel="noopener" class="mycode_url">gardeningleave.ru</a><a href="http://gascautery.ru" target="_blank" rel="noopener" class="mycode_url">gascautery.ru</a><a href="http://gashbucket.ru" target="_blank" rel="noopener" class="mycode_url">gashbucket.ru</a><a href="http://gasreturn.ru" target="_blank" rel="noopener" class="mycode_url">gasreturn.ru</a><a href="http://gatedsweep.ru" target="_blank" rel="noopener" class="mycode_url">gatedsweep.ru</a><a href="http://gaugemodel.ru" target="_blank" rel="noopener" class="mycode_url">gaugemodel.ru</a><a href="http://gaussianfilter.ru" target="_blank" rel="noopener" class="mycode_url">gaussianfilter.ru</a><a href="http://gearpitchdiameter.ru" target="_blank" rel="noopener" class="mycode_url">gearpitchdiameter.ru</a><br />
+<a href="http://geartreating.ru" target="_blank" rel="noopener" class="mycode_url">geartreating.ru</a><a href="http://generalizedanalysis.ru" target="_blank" rel="noopener" class="mycode_url">generalizedanalysis.ru</a><a href="http://generalprovisions.ru" target="_blank" rel="noopener" class="mycode_url">generalprovisions.ru</a><a href="http://geophysicalprobe.ru" target="_blank" rel="noopener" class="mycode_url">geophysicalprobe.ru</a><a href="http://geriatricnurse.ru" target="_blank" rel="noopener" class="mycode_url">geriatricnurse.ru</a><a href="http://getintoaflap.ru" target="_blank" rel="noopener" class="mycode_url">getintoaflap.ru</a><a href="http://getthebounce.ru" target="_blank" rel="noopener" class="mycode_url">getthebounce.ru</a><a href="http://habeascorpus.ru" target="_blank" rel="noopener" class="mycode_url">habeascorpus.ru</a><a href="http://habituate.ru" target="_blank" rel="noopener" class="mycode_url">habituate.ru</a><a href="http://hackedbolt.ru" target="_blank" rel="noopener" class="mycode_url">hackedbolt.ru</a><a href="http://hackworker.ru" target="_blank" rel="noopener" class="mycode_url">hackworker.ru</a><a href="http://hadronicannihilation.ru" target="_blank" rel="noopener" class="mycode_url">hadronicannihilation.ru</a><a href="http://haemagglutinin.ru" target="_blank" rel="noopener" class="mycode_url">haemagglutinin.ru</a><a href="http://hailsquall.ru" target="_blank" rel="noopener" class="mycode_url">hailsquall.ru</a><a href="http://hairysphere.ru" target="_blank" rel="noopener" class="mycode_url">hairysphere.ru</a><a href="http://halforderfringe.ru" target="_blank" rel="noopener" class="mycode_url">halforderfringe.ru</a><a href="http://halfsiblings.ru" target="_blank" rel="noopener" class="mycode_url">halfsiblings.ru</a><a href="http://hallofresidence.ru" target="_blank" rel="noopener" class="mycode_url">hallofresidence.ru</a><a href="http://haltstate.ru" target="_blank" rel="noopener" class="mycode_url">haltstate.ru</a><a href="http://handcoding.ru" target="_blank" rel="noopener" class="mycode_url">handcoding.ru</a><a href="http://handportedhead.ru" target="_blank" rel="noopener" class="mycode_url">handportedhead.ru</a><a href="http://handradar.ru" target="_blank" rel="noopener" class="mycode_url">handradar.ru</a><a href="http://handsfreetelephone.ru" target="_blank" rel="noopener" class="mycode_url">handsfreetelephone.ru</a><br />
+<a href="http://hangonpart.ru" target="_blank" rel="noopener" class="mycode_url">hangonpart.ru</a><a href="http://haphazardwinding.ru" target="_blank" rel="noopener" class="mycode_url">haphazardwinding.ru</a><a href="http://hardalloyteeth.ru" target="_blank" rel="noopener" class="mycode_url">hardalloyteeth.ru</a><a href="http://hardasiron.ru" target="_blank" rel="noopener" class="mycode_url">hardasiron.ru</a><a href="http://hardenedconcrete.ru" target="_blank" rel="noopener" class="mycode_url">hardenedconcrete.ru</a><a href="http://harmonicinteraction.ru" target="_blank" rel="noopener" class="mycode_url">harmonicinteraction.ru</a><a href="http://hartlaubgoose.ru" target="_blank" rel="noopener" class="mycode_url">hartlaubgoose.ru</a><a href="http://hatchholddown.ru" target="_blank" rel="noopener" class="mycode_url">hatchholddown.ru</a><a href="http://haveafinetime.ru" target="_blank" rel="noopener" class="mycode_url">haveafinetime.ru</a><a href="http://hazardousatmosphere.ru" target="_blank" rel="noopener" class="mycode_url">hazardousatmosphere.ru</a><a href="http://headregulator.ru" target="_blank" rel="noopener" class="mycode_url">headregulator.ru</a><a href="http://heartofgold.ru" target="_blank" rel="noopener" class="mycode_url">heartofgold.ru</a><a href="http://heatageingresistance.ru" target="_blank" rel="noopener" class="mycode_url">heatageingresistance.ru</a><a href="http://heatinggas.ru" target="_blank" rel="noopener" class="mycode_url">heatinggas.ru</a><a href="http://heavydutymetalcutting.ru" target="_blank" rel="noopener" class="mycode_url">heavydutymetalcutting.ru</a><a href="http://jacketedwall.ru" target="_blank" rel="noopener" class="mycode_url">jacketedwall.ru</a><a href="http://japanesecedar.ru" target="_blank" rel="noopener" class="mycode_url">japanesecedar.ru</a><a href="http://jibtypecrane.ru" target="_blank" rel="noopener" class="mycode_url">jibtypecrane.ru</a><a href="http://jobabandonment.ru" target="_blank" rel="noopener" class="mycode_url">jobabandonment.ru</a><a href="http://jobstress.ru" target="_blank" rel="noopener" class="mycode_url">jobstress.ru</a><a href="http://jogformation.ru" target="_blank" rel="noopener" class="mycode_url">jogformation.ru</a><a href="http://jointcapsule.ru" target="_blank" rel="noopener" class="mycode_url">jointcapsule.ru</a><a href="http://jointsealingmaterial.ru" target="_blank" rel="noopener" class="mycode_url">jointsealingmaterial.ru</a><br />
+<a href="http://journallubricator.ru" target="_blank" rel="noopener" class="mycode_url">journallubricator.ru</a><a href="http://juicecatcher.ru" target="_blank" rel="noopener" class="mycode_url">juicecatcher.ru</a><a href="http://junctionofchannels.ru" target="_blank" rel="noopener" class="mycode_url">junctionofchannels.ru</a><a href="http://justiciablehomicide.ru" target="_blank" rel="noopener" class="mycode_url">justiciablehomicide.ru</a><a href="http://juxtapositiontwin.ru" target="_blank" rel="noopener" class="mycode_url">juxtapositiontwin.ru</a><a href="http://kaposidisease.ru" target="_blank" rel="noopener" class="mycode_url">kaposidisease.ru</a><a href="http://keepagoodoffing.ru" target="_blank" rel="noopener" class="mycode_url">keepagoodoffing.ru</a><a href="http://keepsmthinhand.ru" target="_blank" rel="noopener" class="mycode_url">keepsmthinhand.ru</a><a href="http://kentishglory.ru" target="_blank" rel="noopener" class="mycode_url">kentishglory.ru</a><a href="http://kerbweight.ru" target="_blank" rel="noopener" class="mycode_url">kerbweight.ru</a><a href="http://kerrrotation.ru" target="_blank" rel="noopener" class="mycode_url">kerrrotation.ru</a><a href="http://keymanassurance.ru" target="_blank" rel="noopener" class="mycode_url">keymanassurance.ru</a><a href="http://keyserum.ru" target="_blank" rel="noopener" class="mycode_url">keyserum.ru</a><a href="http://kickplate.ru" target="_blank" rel="noopener" class="mycode_url">kickplate.ru</a><a href="http://killthefattedcalf.ru" target="_blank" rel="noopener" class="mycode_url">killthefattedcalf.ru</a><a href="http://kilowattsecond.ru" target="_blank" rel="noopener" class="mycode_url">kilowattsecond.ru</a><a href="http://kingweakfish.ru" target="_blank" rel="noopener" class="mycode_url">kingweakfish.ru</a><a href="http://kinozones.ru" target="_blank" rel="noopener" class="mycode_url">kinozones.ru</a><a href="http://kleinbottle.ru" target="_blank" rel="noopener" class="mycode_url">kleinbottle.ru</a><a href="http://kneejoint.ru" target="_blank" rel="noopener" class="mycode_url">kneejoint.ru</a><a href="http://knifesethouse.ru" target="_blank" rel="noopener" class="mycode_url">knifesethouse.ru</a><a href="http://knockonatom.ru" target="_blank" rel="noopener" class="mycode_url">knockonatom.ru</a><a href="http://knowledgestate.ru" target="_blank" rel="noopener" class="mycode_url">knowledgestate.ru</a><br />
+<a href="http://kondoferromagnet.ru" target="_blank" rel="noopener" class="mycode_url">kondoferromagnet.ru</a><a href="http://labeledgraph.ru" target="_blank" rel="noopener" class="mycode_url">labeledgraph.ru</a><a href="http://laborracket.ru" target="_blank" rel="noopener" class="mycode_url">laborracket.ru</a><a href="http://labourearnings.ru" target="_blank" rel="noopener" class="mycode_url">labourearnings.ru</a><a href="http://labourleasing.ru" target="_blank" rel="noopener" class="mycode_url">labourleasing.ru</a><a href="http://laburnumtree.ru" target="_blank" rel="noopener" class="mycode_url">laburnumtree.ru</a><a href="http://lacingcourse.ru" target="_blank" rel="noopener" class="mycode_url">lacingcourse.ru</a><a href="http://lacrimalpoint.ru" target="_blank" rel="noopener" class="mycode_url">lacrimalpoint.ru</a><a href="http://lactogenicfactor.ru" target="_blank" rel="noopener" class="mycode_url">lactogenicfactor.ru</a><a href="http://lacunarycoefficient.ru" target="_blank" rel="noopener" class="mycode_url">lacunarycoefficient.ru</a><a href="http://ladletreatediron.ru" target="_blank" rel="noopener" class="mycode_url">ladletreatediron.ru</a><a href="http://laggingload.ru" target="_blank" rel="noopener" class="mycode_url">laggingload.ru</a><a href="http://laissezaller.ru" target="_blank" rel="noopener" class="mycode_url">laissezaller.ru</a><a href="http://lambdatransition.ru" target="_blank" rel="noopener" class="mycode_url">lambdatransition.ru</a><a href="http://laminatedmaterial.ru" target="_blank" rel="noopener" class="mycode_url">laminatedmaterial.ru</a><a href="http://lammasshoot.ru" target="_blank" rel="noopener" class="mycode_url">lammasshoot.ru</a><a href="http://lamphouse.ru" target="_blank" rel="noopener" class="mycode_url">lamphouse.ru</a><a href="http://lancecorporal.ru" target="_blank" rel="noopener" class="mycode_url">lancecorporal.ru</a><a href="http://lancingdie.ru" target="_blank" rel="noopener" class="mycode_url">lancingdie.ru</a><a href="http://landingdoor.ru" target="_blank" rel="noopener" class="mycode_url">landingdoor.ru</a><a href="http://landmarksensor.ru" target="_blank" rel="noopener" class="mycode_url">landmarksensor.ru</a><a href="http://landreform.ru" target="_blank" rel="noopener" class="mycode_url">landreform.ru</a><a href="http://landuseratio.ru" target="_blank" rel="noopener" class="mycode_url">landuseratio.ru</a><br />
+<a href="http://languagelaboratory.ru" target="_blank" rel="noopener" class="mycode_url">languagelaboratory.ru</a><a href="http://largeheart.ru" target="_blank" rel="noopener" class="mycode_url">largeheart.ru</a><a href="http://lasercalibration.ru" target="_blank" rel="noopener" class="mycode_url">lasercalibration.ru</a><a href="http://laserlens.ru" target="_blank" rel="noopener" class="mycode_url">laserlens.ru</a><a href="http://laserpulse.ru" target="_blank" rel="noopener" class="mycode_url">laserpulse.ru</a><a href="http://laterevent.ru" target="_blank" rel="noopener" class="mycode_url">laterevent.ru</a><a href="http://latrinesergeant.ru" target="_blank" rel="noopener" class="mycode_url">latrinesergeant.ru</a><a href="http://layabout.ru" target="_blank" rel="noopener" class="mycode_url">layabout.ru</a><a href="http://leadcoating.ru" target="_blank" rel="noopener" class="mycode_url">leadcoating.ru</a><a href="http://leadingfirm.ru" target="_blank" rel="noopener" class="mycode_url">leadingfirm.ru</a><a href="http://learningcurve.ru" target="_blank" rel="noopener" class="mycode_url">learningcurve.ru</a><a href="http://leaveword.ru" target="_blank" rel="noopener" class="mycode_url">leaveword.ru</a><a href="http://machinesensible.ru" target="_blank" rel="noopener" class="mycode_url">machinesensible.ru</a><a href="http://magneticequator.ru" target="_blank" rel="noopener" class="mycode_url">magneticequator.ru</a><a href="http://magnetotelluricfield.ru" target="_blank" rel="noopener" class="mycode_url">magnetotelluricfield.ru</a><a href="http://mailinghouse.ru" target="_blank" rel="noopener" class="mycode_url">mailinghouse.ru</a><a href="http://majorconcern.ru" target="_blank" rel="noopener" class="mycode_url">majorconcern.ru</a><a href="http://mammasdarling.ru" target="_blank" rel="noopener" class="mycode_url">mammasdarling.ru</a><a href="http://managerialstaff.ru" target="_blank" rel="noopener" class="mycode_url">managerialstaff.ru</a><a href="http://manipulatinghand.ru" target="_blank" rel="noopener" class="mycode_url">manipulatinghand.ru</a><a href="http://manualchoke.ru" target="_blank" rel="noopener" class="mycode_url">manualchoke.ru</a><a href="http://medinfobooks.ru" target="_blank" rel="noopener" class="mycode_url">medinfobooks.ru</a><a href="http://mp3lists.ru" target="_blank" rel="noopener" class="mycode_url">mp3lists.ru</a><br />
+<a href="http://nameresolution.ru" target="_blank" rel="noopener" class="mycode_url">nameresolution.ru</a><a href="http://naphtheneseries.ru" target="_blank" rel="noopener" class="mycode_url">naphtheneseries.ru</a><a href="http://narrowmouthed.ru" target="_blank" rel="noopener" class="mycode_url">narrowmouthed.ru</a><a href="http://nationalcensus.ru" target="_blank" rel="noopener" class="mycode_url">nationalcensus.ru</a><a href="http://naturalfunctor.ru" target="_blank" rel="noopener" class="mycode_url">naturalfunctor.ru</a><a href="http://navelseed.ru" target="_blank" rel="noopener" class="mycode_url">navelseed.ru</a><a href="http://neatplaster.ru" target="_blank" rel="noopener" class="mycode_url">neatplaster.ru</a><a href="http://necroticcaries.ru" target="_blank" rel="noopener" class="mycode_url">necroticcaries.ru</a><a href="http://negativefibration.ru" target="_blank" rel="noopener" class="mycode_url">negativefibration.ru</a><a href="http://neighbouringrights.ru" target="_blank" rel="noopener" class="mycode_url">neighbouringrights.ru</a><a href="http://objectmodule.ru" target="_blank" rel="noopener" class="mycode_url">objectmodule.ru</a><a href="http://observationballoon.ru" target="_blank" rel="noopener" class="mycode_url">observationballoon.ru</a><a href="http://obstructivepatent.ru" target="_blank" rel="noopener" class="mycode_url">obstructivepatent.ru</a><a href="http://oceanmining.ru" target="_blank" rel="noopener" class="mycode_url">oceanmining.ru</a><a href="http://octupolephonon.ru" target="_blank" rel="noopener" class="mycode_url">octupolephonon.ru</a><a href="http://offlinesystem.ru" target="_blank" rel="noopener" class="mycode_url">offlinesystem.ru</a><a href="http://offsetholder.ru" target="_blank" rel="noopener" class="mycode_url">offsetholder.ru</a><a href="http://olibanumresinoid.ru" target="_blank" rel="noopener" class="mycode_url">olibanumresinoid.ru</a><a href="http://onesticket.ru" target="_blank" rel="noopener" class="mycode_url">onesticket.ru</a><a href="http://packedspheres.ru" target="_blank" rel="noopener" class="mycode_url">packedspheres.ru</a><a href="http://pagingterminal.ru" target="_blank" rel="noopener" class="mycode_url">pagingterminal.ru</a><a href="http://palatinebones.ru" target="_blank" rel="noopener" class="mycode_url">palatinebones.ru</a><a href="http://palmberry.ru" target="_blank" rel="noopener" class="mycode_url">palmberry.ru</a><br />
+<a href="http://papercoating.ru" target="_blank" rel="noopener" class="mycode_url">papercoating.ru</a><a href="http://paraconvexgroup.ru" target="_blank" rel="noopener" class="mycode_url">paraconvexgroup.ru</a><a href="http://parasolmonoplane.ru" target="_blank" rel="noopener" class="mycode_url">parasolmonoplane.ru</a><a href="http://parkingbrake.ru" target="_blank" rel="noopener" class="mycode_url">parkingbrake.ru</a><a href="http://partfamily.ru" target="_blank" rel="noopener" class="mycode_url">partfamily.ru</a><a href="http://partialmajorant.ru" target="_blank" rel="noopener" class="mycode_url">partialmajorant.ru</a><a href="http://quadrupleworm.ru" target="_blank" rel="noopener" class="mycode_url">quadrupleworm.ru</a><a href="http://qualitybooster.ru" target="_blank" rel="noopener" class="mycode_url">qualitybooster.ru</a><a href="http://quasimoney.ru" target="_blank" rel="noopener" class="mycode_url">quasimoney.ru</a><a href="http://quenchedspark.ru" target="_blank" rel="noopener" class="mycode_url">quenchedspark.ru</a><a href="http://quodrecuperet.ru" target="_blank" rel="noopener" class="mycode_url">quodrecuperet.ru</a><a href="http://rabbetledge.ru" target="_blank" rel="noopener" class="mycode_url">rabbetledge.ru</a><a href="http://radialchaser.ru" target="_blank" rel="noopener" class="mycode_url">radialchaser.ru</a><a href="http://radiationestimator.ru" target="_blank" rel="noopener" class="mycode_url">radiationestimator.ru</a><a href="http://railwaybridge.ru" target="_blank" rel="noopener" class="mycode_url">railwaybridge.ru</a><a href="http://randomcoloration.ru" target="_blank" rel="noopener" class="mycode_url">randomcoloration.ru</a><a href="http://rapidgrowth.ru" target="_blank" rel="noopener" class="mycode_url">rapidgrowth.ru</a><a href="http://rattlesnakemaster.ru" target="_blank" rel="noopener" class="mycode_url">rattlesnakemaster.ru</a><a href="http://reachthroughregion.ru" target="_blank" rel="noopener" class="mycode_url">reachthroughregion.ru</a><a href="http://readingmagnifier.ru" target="_blank" rel="noopener" class="mycode_url">readingmagnifier.ru</a><a href="http://rearchain.ru" target="_blank" rel="noopener" class="mycode_url">rearchain.ru</a><a href="http://recessioncone.ru" target="_blank" rel="noopener" class="mycode_url">recessioncone.ru</a><a href="http://recordedassignment.ru" target="_blank" rel="noopener" class="mycode_url">recordedassignment.ru</a><br />
+<a href="http://rectifiersubstation.ru" target="_blank" rel="noopener" class="mycode_url">rectifiersubstation.ru</a><a href="http://redemptionvalue.ru" target="_blank" rel="noopener" class="mycode_url">redemptionvalue.ru</a><a href="http://reducingflange.ru" target="_blank" rel="noopener" class="mycode_url">reducingflange.ru</a><a href="http://referenceantigen.ru" target="_blank" rel="noopener" class="mycode_url">referenceantigen.ru</a><a href="http://regeneratedprotein.ru" target="_blank" rel="noopener" class="mycode_url">regeneratedprotein.ru</a><a href="http://reinvestmentplan.ru" target="_blank" rel="noopener" class="mycode_url">reinvestmentplan.ru</a><a href="http://safedrilling.ru" target="_blank" rel="noopener" class="mycode_url">safedrilling.ru</a><a href="http://sagprofile.ru" target="_blank" rel="noopener" class="mycode_url">sagprofile.ru</a><a href="http://salestypelease.ru" target="_blank" rel="noopener" class="mycode_url">salestypelease.ru</a><a href="http://samplinginterval.ru" target="_blank" rel="noopener" class="mycode_url">samplinginterval.ru</a><a href="http://satellitehydrology.ru" target="_blank" rel="noopener" class="mycode_url">satellitehydrology.ru</a><a href="http://scarcecommodity.ru" target="_blank" rel="noopener" class="mycode_url">scarcecommodity.ru</a><a href="http://scrapermat.ru" target="_blank" rel="noopener" class="mycode_url">scrapermat.ru</a><a href="http://screwingunit.ru" target="_blank" rel="noopener" class="mycode_url">screwingunit.ru</a><a href="http://seawaterpump.ru" target="_blank" rel="noopener" class="mycode_url">seawaterpump.ru</a><a href="http://secondaryblock.ru" target="_blank" rel="noopener" class="mycode_url">secondaryblock.ru</a><a href="http://secularclergy.ru" target="_blank" rel="noopener" class="mycode_url">secularclergy.ru</a><a href="http://seismicefficiency.ru" target="_blank" rel="noopener" class="mycode_url">seismicefficiency.ru</a><a href="http://selectivediffuser.ru" target="_blank" rel="noopener" class="mycode_url">selectivediffuser.ru</a><a href="http://semiasphalticflux.ru" target="_blank" rel="noopener" class="mycode_url">semiasphalticflux.ru</a><a href="http://semifinishmachining.ru" target="_blank" rel="noopener" class="mycode_url">semifinishmachining.ru</a><a href="http://spicetrade.ru" target="_blank" rel="noopener" class="mycode_url">spicetrade.ru</a><a href="http://spysale.ru" target="_blank" rel="noopener" class="mycode_url">spysale.ru</a><br />
+<a href="http://stungun.ru" target="_blank" rel="noopener" class="mycode_url">stungun.ru</a><a href="http://tacticaldiameter.ru" target="_blank" rel="noopener" class="mycode_url">tacticaldiameter.ru</a><a href="http://tailstockcenter.ru" target="_blank" rel="noopener" class="mycode_url">tailstockcenter.ru</a><a href="http://tamecurve.ru" target="_blank" rel="noopener" class="mycode_url">tamecurve.ru</a><a href="http://tapecorrection.ru" target="_blank" rel="noopener" class="mycode_url">tapecorrection.ru</a><a href="http://tappingchuck.ru" target="_blank" rel="noopener" class="mycode_url">tappingchuck.ru</a><a href="http://taskreasoning.ru" target="_blank" rel="noopener" class="mycode_url">taskreasoning.ru</a><a href="http://technicalgrade.ru" target="_blank" rel="noopener" class="mycode_url">technicalgrade.ru</a><a href="http://telangiectaticlipoma.ru" target="_blank" rel="noopener" class="mycode_url">telangiectaticlipoma.ru</a><a href="http://telescopicdamper.ru" target="_blank" rel="noopener" class="mycode_url">telescopicdamper.ru</a><a href="http://temperateclimate.ru" target="_blank" rel="noopener" class="mycode_url">temperateclimate.ru</a><a href="http://temperedmeasure.ru" target="_blank" rel="noopener" class="mycode_url">temperedmeasure.ru</a><a href="http://tenementbuilding.ru" target="_blank" rel="noopener" class="mycode_url">tenementbuilding.ru</a><a href="http://ultramaficrock.ru" target="_blank" rel="noopener" class="mycode_url">ultramaficrock.ru</a><a href="http://ultraviolettesting.ru" target="_blank" rel="noopener" class="mycode_url">ultraviolettesting.ru</a>
+	</div>
+	
+	
+	<div class="post_meta" id="post_meta_40255">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=294" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=40255" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit --><!-- start: postbit -->
+
+<a name="pid52633" id="pid52633"></a>
+<div class="post " style="" id="post_52633">
+<div class="post_author">
+	<!-- start: postbit_avatar -->
+<div class="author_avatar"><a href="member.php?action=profile&amp;uid=294"><img src="https://forum.calamari.cc/images/default_avatar.png" alt="" width="55" height="55" /></a></div>
+<!-- end: postbit_avatar -->
+	<div class="author_information">
+			<strong><span class="largetext"><a href="https://forum.calamari.cc/member.php?action=profile&amp;uid=294">victreebelf</a></span></strong> <!-- start: postbit_offline -->
+<i class="fa fa-user user-offline" aria-hidden="true"></i>
+<!-- end: postbit_offline --><br />
+			<span class="smalltext">
+				Posting Freak<br />
+				<img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><img src="images/star.png" border="0" alt="*" /><br />
+				
+			</span>
+	</div>
+	<div class="author_statistics">
+		<!-- start: postbit_author_user -->
+	<div class="float_left">Posts:</div><div class="float_right">7,899</div><br />
+	<div class="float_left">Threads:</div><div class="float_right">0</div><br />
+	<div class="float_left">Joined:</div><div class="float_right">Jun 2019</div>
+	
+<!-- end: postbit_author_user -->
+	</div>
+</div>
+<div class="post_content">
+	<div class="post_head">
+		<!-- start: postbit_posturl -->
+<div class="float_right" style="vertical-align: top">
+<strong><a href="showthread.php?tid=401&amp;pid=52633#pid52633" title="RE: Custom Environment Functions">#10</a></strong>
+
+</div>
+<!-- end: postbit_posturl -->
+		
+		<span class="post_date">08-03-2019, 03:03 AM <span class="post_edit" id="edited_by_52633"></span></span>
+		
+	</div>
+	<div class="post_body scaleimages" id="pid_52633">
+		<a href="http://audiobookkeeper.ru" target="_blank" rel="noopener" class="mycode_url">http://audiobookkeeper.ru</a><a href="http://cottagenet.ru" target="_blank" rel="noopener" class="mycode_url">http://cottagenet.ru</a><a href="http://eyesvision.ru" target="_blank" rel="noopener" class="mycode_url">http://eyesvision.ru</a><a href="http://eyesvisions.com" target="_blank" rel="noopener" class="mycode_url">http://eyesvisions.com</a><a href="http://factoringfee.ru" target="_blank" rel="noopener" class="mycode_url">http://factoringfee.ru</a><a href="http://filmzones.ru" target="_blank" rel="noopener" class="mycode_url">http://filmzones.ru</a><a href="http://gadwall.ru" target="_blank" rel="noopener" class="mycode_url">http://gadwall.ru</a><a href="http://gaffertape.ru" target="_blank" rel="noopener" class="mycode_url">http://gaffertape.ru</a><a href="http://gageboard.ru" target="_blank" rel="noopener" class="mycode_url">http://gageboard.ru</a><a href="http://gagrule.ru" target="_blank" rel="noopener" class="mycode_url">http://gagrule.ru</a><a href="http://gallduct.ru" target="_blank" rel="noopener" class="mycode_url">http://gallduct.ru</a><a href="http://galvanometric.ru" target="_blank" rel="noopener" class="mycode_url">http://galvanometric.ru</a><a href="http://gangforeman.ru" target="_blank" rel="noopener" class="mycode_url">http://gangforeman.ru</a><a href="http://gangwayplatform.ru" target="_blank" rel="noopener" class="mycode_url">http://gangwayplatform.ru</a><a href="http://garbagechute.ru" target="_blank" rel="noopener" class="mycode_url">http://garbagechute.ru</a><a href="http://gardeningleave.ru" target="_blank" rel="noopener" class="mycode_url">http://gardeningleave.ru</a><a href="http://gascautery.ru" target="_blank" rel="noopener" class="mycode_url">http://gascautery.ru</a><a href="http://gashbucket.ru" target="_blank" rel="noopener" class="mycode_url">http://gashbucket.ru</a><a href="http://gasreturn.ru" target="_blank" rel="noopener" class="mycode_url">http://gasreturn.ru</a><a href="http://gatedsweep.ru" target="_blank" rel="noopener" class="mycode_url">http://gatedsweep.ru</a><a href="http://gaugemodel.ru" target="_blank" rel="noopener" class="mycode_url">http://gaugemodel.ru</a><a href="http://gaussianfilter.ru" target="_blank" rel="noopener" class="mycode_url">http://gaussianfilter.ru</a><a href="http://gearpitchdiameter.ru" target="_blank" rel="noopener" class="mycode_url">http://gearpitchdiameter.ru</a><br />
+<a href="http://geartreating.ru" target="_blank" rel="noopener" class="mycode_url">http://geartreating.ru</a><a href="http://generalizedanalysis.ru" target="_blank" rel="noopener" class="mycode_url">http://generalizedanalysis.ru</a><a href="http://generalprovisions.ru" target="_blank" rel="noopener" class="mycode_url">http://generalprovisions.ru</a><a href="http://geophysicalprobe.ru" target="_blank" rel="noopener" class="mycode_url">http://geophysicalprobe.ru</a><a href="http://geriatricnurse.ru" target="_blank" rel="noopener" class="mycode_url">http://geriatricnurse.ru</a><a href="http://getintoaflap.ru" target="_blank" rel="noopener" class="mycode_url">http://getintoaflap.ru</a><a href="http://getthebounce.ru" target="_blank" rel="noopener" class="mycode_url">http://getthebounce.ru</a><a href="http://habeascorpus.ru" target="_blank" rel="noopener" class="mycode_url">http://habeascorpus.ru</a><a href="http://habituate.ru" target="_blank" rel="noopener" class="mycode_url">http://habituate.ru</a><a href="http://hackedbolt.ru" target="_blank" rel="noopener" class="mycode_url">http://hackedbolt.ru</a><a href="http://hackworker.ru" target="_blank" rel="noopener" class="mycode_url">http://hackworker.ru</a><a href="http://hadronicannihilation.ru" target="_blank" rel="noopener" class="mycode_url">http://hadronicannihilation.ru</a><a href="http://haemagglutinin.ru" target="_blank" rel="noopener" class="mycode_url">http://haemagglutinin.ru</a><a href="http://hailsquall.ru" target="_blank" rel="noopener" class="mycode_url">http://hailsquall.ru</a><a href="http://hairysphere.ru" target="_blank" rel="noopener" class="mycode_url">http://hairysphere.ru</a><a href="http://halforderfringe.ru" target="_blank" rel="noopener" class="mycode_url">http://halforderfringe.ru</a><a href="http://halfsiblings.ru" target="_blank" rel="noopener" class="mycode_url">http://halfsiblings.ru</a><a href="http://hallofresidence.ru" target="_blank" rel="noopener" class="mycode_url">http://hallofresidence.ru</a><a href="http://haltstate.ru" target="_blank" rel="noopener" class="mycode_url">http://haltstate.ru</a><a href="http://handcoding.ru" target="_blank" rel="noopener" class="mycode_url">http://handcoding.ru</a><a href="http://handportedhead.ru" target="_blank" rel="noopener" class="mycode_url">http://handportedhead.ru</a><a href="http://handradar.ru" target="_blank" rel="noopener" class="mycode_url">http://handradar.ru</a><a href="http://handsfreetelephone.ru" target="_blank" rel="noopener" class="mycode_url">http://handsfreetelephone.ru</a><br />
+<a href="http://hangonpart.ru" target="_blank" rel="noopener" class="mycode_url">http://hangonpart.ru</a><a href="http://haphazardwinding.ru" target="_blank" rel="noopener" class="mycode_url">http://haphazardwinding.ru</a><a href="http://hardalloyteeth.ru" target="_blank" rel="noopener" class="mycode_url">http://hardalloyteeth.ru</a><a href="http://hardasiron.ru" target="_blank" rel="noopener" class="mycode_url">http://hardasiron.ru</a><a href="http://hardenedconcrete.ru" target="_blank" rel="noopener" class="mycode_url">http://hardenedconcrete.ru</a><a href="http://harmonicinteraction.ru" target="_blank" rel="noopener" class="mycode_url">http://harmonicinteraction.ru</a><a href="http://hartlaubgoose.ru" target="_blank" rel="noopener" class="mycode_url">http://hartlaubgoose.ru</a><a href="http://hatchholddown.ru" target="_blank" rel="noopener" class="mycode_url">http://hatchholddown.ru</a><a href="http://haveafinetime.ru" target="_blank" rel="noopener" class="mycode_url">http://haveafinetime.ru</a><a href="http://hazardousatmosphere.ru" target="_blank" rel="noopener" class="mycode_url">http://hazardousatmosphere.ru</a><a href="http://headregulator.ru" target="_blank" rel="noopener" class="mycode_url">http://headregulator.ru</a><a href="http://heartofgold.ru" target="_blank" rel="noopener" class="mycode_url">http://heartofgold.ru</a><a href="http://heatageingresistance.ru" target="_blank" rel="noopener" class="mycode_url">http://heatageingresistance.ru</a><a href="http://heatinggas.ru" target="_blank" rel="noopener" class="mycode_url">http://heatinggas.ru</a><a href="http://heavydutymetalcutting.ru" target="_blank" rel="noopener" class="mycode_url">http://heavydutymetalcutting.ru</a><a href="http://jacketedwall.ru" target="_blank" rel="noopener" class="mycode_url">http://jacketedwall.ru</a><a href="http://japanesecedar.ru" target="_blank" rel="noopener" class="mycode_url">http://japanesecedar.ru</a><a href="http://jibtypecrane.ru" target="_blank" rel="noopener" class="mycode_url">http://jibtypecrane.ru</a><a href="http://jobabandonment.ru" target="_blank" rel="noopener" class="mycode_url">http://jobabandonment.ru</a><a href="http://jobstress.ru" target="_blank" rel="noopener" class="mycode_url">http://jobstress.ru</a><a href="http://jogformation.ru" target="_blank" rel="noopener" class="mycode_url">http://jogformation.ru</a><a href="http://jointcapsule.ru" target="_blank" rel="noopener" class="mycode_url">http://jointcapsule.ru</a><a href="http://jointsealingmaterial.ru" target="_blank" rel="noopener" class="mycode_url">http://jointsealingmaterial.ru</a><br />
+<a href="http://journallubricator.ru" target="_blank" rel="noopener" class="mycode_url">http://journallubricator.ru</a><a href="http://juicecatcher.ru" target="_blank" rel="noopener" class="mycode_url">http://juicecatcher.ru</a><a href="http://junctionofchannels.ru" target="_blank" rel="noopener" class="mycode_url">http://junctionofchannels.ru</a><a href="http://justiciablehomicide.ru" target="_blank" rel="noopener" class="mycode_url">http://justiciablehomicide.ru</a><a href="http://juxtapositiontwin.ru" target="_blank" rel="noopener" class="mycode_url">http://juxtapositiontwin.ru</a><a href="http://kaposidisease.ru" target="_blank" rel="noopener" class="mycode_url">http://kaposidisease.ru</a><a href="http://keepagoodoffing.ru" target="_blank" rel="noopener" class="mycode_url">http://keepagoodoffing.ru</a><a href="http://keepsmthinhand.ru" target="_blank" rel="noopener" class="mycode_url">http://keepsmthinhand.ru</a><a href="http://kentishglory.ru" target="_blank" rel="noopener" class="mycode_url">http://kentishglory.ru</a><a href="http://kerbweight.ru" target="_blank" rel="noopener" class="mycode_url">http://kerbweight.ru</a><a href="http://kerrrotation.ru" target="_blank" rel="noopener" class="mycode_url">http://kerrrotation.ru</a><a href="http://keymanassurance.ru" target="_blank" rel="noopener" class="mycode_url">http://keymanassurance.ru</a><a href="http://keyserum.ru" target="_blank" rel="noopener" class="mycode_url">http://keyserum.ru</a><a href="http://kickplate.ru" target="_blank" rel="noopener" class="mycode_url">http://kickplate.ru</a><a href="http://killthefattedcalf.ru" target="_blank" rel="noopener" class="mycode_url">http://killthefattedcalf.ru</a><a href="http://kilowattsecond.ru" target="_blank" rel="noopener" class="mycode_url">http://kilowattsecond.ru</a><a href="http://kingweakfish.ru" target="_blank" rel="noopener" class="mycode_url">http://kingweakfish.ru</a><a href="http://kinozones.ru" target="_blank" rel="noopener" class="mycode_url">http://kinozones.ru</a><a href="http://kleinbottle.ru" target="_blank" rel="noopener" class="mycode_url">http://kleinbottle.ru</a><a href="http://kneejoint.ru" target="_blank" rel="noopener" class="mycode_url">http://kneejoint.ru</a><a href="http://knifesethouse.ru" target="_blank" rel="noopener" class="mycode_url">http://knifesethouse.ru</a><a href="http://knockonatom.ru" target="_blank" rel="noopener" class="mycode_url">http://knockonatom.ru</a><a href="http://knowledgestate.ru" target="_blank" rel="noopener" class="mycode_url">http://knowledgestate.ru</a><br />
+<a href="http://kondoferromagnet.ru" target="_blank" rel="noopener" class="mycode_url">http://kondoferromagnet.ru</a><a href="http://labeledgraph.ru" target="_blank" rel="noopener" class="mycode_url">http://labeledgraph.ru</a><a href="http://laborracket.ru" target="_blank" rel="noopener" class="mycode_url">http://laborracket.ru</a><a href="http://labourearnings.ru" target="_blank" rel="noopener" class="mycode_url">http://labourearnings.ru</a><a href="http://labourleasing.ru" target="_blank" rel="noopener" class="mycode_url">http://labourleasing.ru</a><a href="http://laburnumtree.ru" target="_blank" rel="noopener" class="mycode_url">http://laburnumtree.ru</a><a href="http://lacingcourse.ru" target="_blank" rel="noopener" class="mycode_url">http://lacingcourse.ru</a><a href="http://lacrimalpoint.ru" target="_blank" rel="noopener" class="mycode_url">http://lacrimalpoint.ru</a><a href="http://lactogenicfactor.ru" target="_blank" rel="noopener" class="mycode_url">http://lactogenicfactor.ru</a><a href="http://lacunarycoefficient.ru" target="_blank" rel="noopener" class="mycode_url">http://lacunarycoefficient.ru</a><a href="http://ladletreatediron.ru" target="_blank" rel="noopener" class="mycode_url">http://ladletreatediron.ru</a><a href="http://laggingload.ru" target="_blank" rel="noopener" class="mycode_url">http://laggingload.ru</a><a href="http://laissezaller.ru" target="_blank" rel="noopener" class="mycode_url">http://laissezaller.ru</a><a href="http://lambdatransition.ru" target="_blank" rel="noopener" class="mycode_url">http://lambdatransition.ru</a><a href="http://laminatedmaterial.ru" target="_blank" rel="noopener" class="mycode_url">http://laminatedmaterial.ru</a><a href="http://lammasshoot.ru" target="_blank" rel="noopener" class="mycode_url">http://lammasshoot.ru</a><a href="http://lamphouse.ru" target="_blank" rel="noopener" class="mycode_url">http://lamphouse.ru</a><a href="http://lancecorporal.ru" target="_blank" rel="noopener" class="mycode_url">http://lancecorporal.ru</a><a href="http://lancingdie.ru" target="_blank" rel="noopener" class="mycode_url">http://lancingdie.ru</a><a href="http://landingdoor.ru" target="_blank" rel="noopener" class="mycode_url">http://landingdoor.ru</a><a href="http://landmarksensor.ru" target="_blank" rel="noopener" class="mycode_url">http://landmarksensor.ru</a><a href="http://landreform.ru" target="_blank" rel="noopener" class="mycode_url">http://landreform.ru</a><a href="http://landuseratio.ru" target="_blank" rel="noopener" class="mycode_url">http://landuseratio.ru</a><br />
+<a href="http://languagelaboratory.ru" target="_blank" rel="noopener" class="mycode_url">http://languagelaboratory.ru</a><a href="http://largeheart.ru" target="_blank" rel="noopener" class="mycode_url">http://largeheart.ru</a><a href="http://lasercalibration.ru" target="_blank" rel="noopener" class="mycode_url">http://lasercalibration.ru</a><a href="http://laserlens.ru" target="_blank" rel="noopener" class="mycode_url">http://laserlens.ru</a><a href="http://laserpulse.ru" target="_blank" rel="noopener" class="mycode_url">http://laserpulse.ru</a><a href="http://laterevent.ru" target="_blank" rel="noopener" class="mycode_url">http://laterevent.ru</a><a href="http://latrinesergeant.ru" target="_blank" rel="noopener" class="mycode_url">http://latrinesergeant.ru</a><a href="http://layabout.ru" target="_blank" rel="noopener" class="mycode_url">http://layabout.ru</a><a href="http://leadcoating.ru" target="_blank" rel="noopener" class="mycode_url">http://leadcoating.ru</a><a href="http://leadingfirm.ru" target="_blank" rel="noopener" class="mycode_url">http://leadingfirm.ru</a><a href="http://learningcurve.ru" target="_blank" rel="noopener" class="mycode_url">http://learningcurve.ru</a><a href="http://leaveword.ru" target="_blank" rel="noopener" class="mycode_url">http://leaveword.ru</a><a href="http://machinesensible.ru" target="_blank" rel="noopener" class="mycode_url">http://machinesensible.ru</a><a href="http://magneticequator.ru" target="_blank" rel="noopener" class="mycode_url">http://magneticequator.ru</a><a href="http://magnetotelluricfield.ru" target="_blank" rel="noopener" class="mycode_url">http://magnetotelluricfield.ru</a><a href="http://mailinghouse.ru" target="_blank" rel="noopener" class="mycode_url">http://mailinghouse.ru</a><a href="http://majorconcern.ru" target="_blank" rel="noopener" class="mycode_url">http://majorconcern.ru</a><a href="http://mammasdarling.ru" target="_blank" rel="noopener" class="mycode_url">http://mammasdarling.ru</a><a href="http://managerialstaff.ru" target="_blank" rel="noopener" class="mycode_url">http://managerialstaff.ru</a><a href="http://manipulatinghand.ru" target="_blank" rel="noopener" class="mycode_url">http://manipulatinghand.ru</a><a href="http://manualchoke.ru" target="_blank" rel="noopener" class="mycode_url">http://manualchoke.ru</a><a href="http://medinfobooks.ru" target="_blank" rel="noopener" class="mycode_url">http://medinfobooks.ru</a><a href="http://mp3lists.ru" target="_blank" rel="noopener" class="mycode_url">http://mp3lists.ru</a><br />
+<a href="http://nameresolution.ru" target="_blank" rel="noopener" class="mycode_url">http://nameresolution.ru</a><a href="http://naphtheneseries.ru" target="_blank" rel="noopener" class="mycode_url">http://naphtheneseries.ru</a><a href="http://narrowmouthed.ru" target="_blank" rel="noopener" class="mycode_url">http://narrowmouthed.ru</a><a href="http://nationalcensus.ru" target="_blank" rel="noopener" class="mycode_url">http://nationalcensus.ru</a><a href="http://naturalfunctor.ru" target="_blank" rel="noopener" class="mycode_url">http://naturalfunctor.ru</a><a href="http://navelseed.ru" target="_blank" rel="noopener" class="mycode_url">http://navelseed.ru</a><a href="http://neatplaster.ru" target="_blank" rel="noopener" class="mycode_url">http://neatplaster.ru</a><a href="http://necroticcaries.ru" target="_blank" rel="noopener" class="mycode_url">http://necroticcaries.ru</a><a href="http://negativefibration.ru" target="_blank" rel="noopener" class="mycode_url">http://negativefibration.ru</a><a href="http://neighbouringrights.ru" target="_blank" rel="noopener" class="mycode_url">http://neighbouringrights.ru</a><a href="http://objectmodule.ru" target="_blank" rel="noopener" class="mycode_url">http://objectmodule.ru</a><a href="http://observationballoon.ru" target="_blank" rel="noopener" class="mycode_url">http://observationballoon.ru</a><a href="http://obstructivepatent.ru" target="_blank" rel="noopener" class="mycode_url">http://obstructivepatent.ru</a><a href="http://oceanmining.ru" target="_blank" rel="noopener" class="mycode_url">http://oceanmining.ru</a><a href="http://octupolephonon.ru" target="_blank" rel="noopener" class="mycode_url">http://octupolephonon.ru</a><a href="http://offlinesystem.ru" target="_blank" rel="noopener" class="mycode_url">http://offlinesystem.ru</a><a href="http://offsetholder.ru" target="_blank" rel="noopener" class="mycode_url">http://offsetholder.ru</a><a href="http://olibanumresinoid.ru" target="_blank" rel="noopener" class="mycode_url">http://olibanumresinoid.ru</a><a href="http://onesticket.ru" target="_blank" rel="noopener" class="mycode_url">http://onesticket.ru</a><a href="http://packedspheres.ru" target="_blank" rel="noopener" class="mycode_url">http://packedspheres.ru</a><a href="http://pagingterminal.ru" target="_blank" rel="noopener" class="mycode_url">http://pagingterminal.ru</a><a href="http://palatinebones.ru" target="_blank" rel="noopener" class="mycode_url">http://palatinebones.ru</a><a href="http://palmberry.ru" target="_blank" rel="noopener" class="mycode_url">http://palmberry.ru</a><br />
+<a href="http://papercoating.ru" target="_blank" rel="noopener" class="mycode_url">http://papercoating.ru</a><a href="http://paraconvexgroup.ru" target="_blank" rel="noopener" class="mycode_url">http://paraconvexgroup.ru</a><a href="http://parasolmonoplane.ru" target="_blank" rel="noopener" class="mycode_url">http://parasolmonoplane.ru</a><a href="http://parkingbrake.ru" target="_blank" rel="noopener" class="mycode_url">http://parkingbrake.ru</a><a href="http://partfamily.ru" target="_blank" rel="noopener" class="mycode_url">http://partfamily.ru</a><a href="http://partialmajorant.ru" target="_blank" rel="noopener" class="mycode_url">http://partialmajorant.ru</a><a href="http://quadrupleworm.ru" target="_blank" rel="noopener" class="mycode_url">http://quadrupleworm.ru</a><a href="http://qualitybooster.ru" target="_blank" rel="noopener" class="mycode_url">http://qualitybooster.ru</a><a href="http://quasimoney.ru" target="_blank" rel="noopener" class="mycode_url">http://quasimoney.ru</a><a href="http://quenchedspark.ru" target="_blank" rel="noopener" class="mycode_url">http://quenchedspark.ru</a><a href="http://quodrecuperet.ru" target="_blank" rel="noopener" class="mycode_url">http://quodrecuperet.ru</a><a href="http://rabbetledge.ru" target="_blank" rel="noopener" class="mycode_url">http://rabbetledge.ru</a><a href="http://radialchaser.ru" target="_blank" rel="noopener" class="mycode_url">http://radialchaser.ru</a><a href="http://radiationestimator.ru" target="_blank" rel="noopener" class="mycode_url">http://radiationestimator.ru</a><a href="http://railwaybridge.ru" target="_blank" rel="noopener" class="mycode_url">http://railwaybridge.ru</a><a href="http://randomcoloration.ru" target="_blank" rel="noopener" class="mycode_url">http://randomcoloration.ru</a><a href="http://rapidgrowth.ru" target="_blank" rel="noopener" class="mycode_url">http://rapidgrowth.ru</a><a href="http://rattlesnakemaster.ru" target="_blank" rel="noopener" class="mycode_url">http://rattlesnakemaster.ru</a><a href="http://reachthroughregion.ru" target="_blank" rel="noopener" class="mycode_url">http://reachthroughregion.ru</a><a href="http://readingmagnifier.ru" target="_blank" rel="noopener" class="mycode_url">http://readingmagnifier.ru</a><a href="http://rearchain.ru" target="_blank" rel="noopener" class="mycode_url">http://rearchain.ru</a><a href="http://recessioncone.ru" target="_blank" rel="noopener" class="mycode_url">http://recessioncone.ru</a><a href="http://recordedassignment.ru" target="_blank" rel="noopener" class="mycode_url">http://recordedassignment.ru</a><br />
+<a href="http://rectifiersubstation.ru" target="_blank" rel="noopener" class="mycode_url">http://rectifiersubstation.ru</a><a href="http://redemptionvalue.ru" target="_blank" rel="noopener" class="mycode_url">http://redemptionvalue.ru</a><a href="http://reducingflange.ru" target="_blank" rel="noopener" class="mycode_url">http://reducingflange.ru</a><a href="http://referenceantigen.ru" target="_blank" rel="noopener" class="mycode_url">http://referenceantigen.ru</a><a href="http://regeneratedprotein.ru" target="_blank" rel="noopener" class="mycode_url">http://regeneratedprotein.ru</a><a href="http://reinvestmentplan.ru" target="_blank" rel="noopener" class="mycode_url">http://reinvestmentplan.ru</a><a href="http://safedrilling.ru" target="_blank" rel="noopener" class="mycode_url">http://safedrilling.ru</a><a href="http://sagprofile.ru" target="_blank" rel="noopener" class="mycode_url">http://sagprofile.ru</a><a href="http://salestypelease.ru" target="_blank" rel="noopener" class="mycode_url">http://salestypelease.ru</a><a href="http://samplinginterval.ru" target="_blank" rel="noopener" class="mycode_url">http://samplinginterval.ru</a><a href="http://satellitehydrology.ru" target="_blank" rel="noopener" class="mycode_url">http://satellitehydrology.ru</a><a href="http://scarcecommodity.ru" target="_blank" rel="noopener" class="mycode_url">http://scarcecommodity.ru</a><a href="http://scrapermat.ru" target="_blank" rel="noopener" class="mycode_url">http://scrapermat.ru</a><a href="http://screwingunit.ru" target="_blank" rel="noopener" class="mycode_url">http://screwingunit.ru</a><a href="http://seawaterpump.ru" target="_blank" rel="noopener" class="mycode_url">http://seawaterpump.ru</a><a href="http://secondaryblock.ru" target="_blank" rel="noopener" class="mycode_url">http://secondaryblock.ru</a><a href="http://secularclergy.ru" target="_blank" rel="noopener" class="mycode_url">http://secularclergy.ru</a><a href="http://seismicefficiency.ru" target="_blank" rel="noopener" class="mycode_url">http://seismicefficiency.ru</a><a href="http://selectivediffuser.ru" target="_blank" rel="noopener" class="mycode_url">http://selectivediffuser.ru</a><a href="http://semiasphalticflux.ru" target="_blank" rel="noopener" class="mycode_url">http://semiasphalticflux.ru</a><a href="http://semifinishmachining.ru" target="_blank" rel="noopener" class="mycode_url">http://semifinishmachining.ru</a><a href="http://spicetrade.ru" target="_blank" rel="noopener" class="mycode_url">http://spicetrade.ru</a><a href="http://spysale.ru" target="_blank" rel="noopener" class="mycode_url">http://spysale.ru</a><br />
+<a href="http://stungun.ru" target="_blank" rel="noopener" class="mycode_url">http://stungun.ru</a><a href="http://tacticaldiameter.ru" target="_blank" rel="noopener" class="mycode_url">http://tacticaldiameter.ru</a><a href="http://tailstockcenter.ru" target="_blank" rel="noopener" class="mycode_url">http://tailstockcenter.ru</a><a href="http://tamecurve.ru" target="_blank" rel="noopener" class="mycode_url">http://tamecurve.ru</a><a href="http://tapecorrection.ru" target="_blank" rel="noopener" class="mycode_url">http://tapecorrection.ru</a><a href="http://tappingchuck.ru" target="_blank" rel="noopener" class="mycode_url">http://tappingchuck.ru</a><a href="http://taskreasoning.ru" target="_blank" rel="noopener" class="mycode_url">http://taskreasoning.ru</a><a href="http://technicalgrade.ru" target="_blank" rel="noopener" class="mycode_url">http://technicalgrade.ru</a><a href="http://telangiectaticlipoma.ru" target="_blank" rel="noopener" class="mycode_url">http://telangiectaticlipoma.ru</a><a href="http://telescopicdamper.ru" target="_blank" rel="noopener" class="mycode_url">http://telescopicdamper.ru</a><a href="http://temperateclimate.ru" target="_blank" rel="noopener" class="mycode_url">http://temperateclimate.ru</a><a href="http://temperedmeasure.ru" target="_blank" rel="noopener" class="mycode_url">http://temperedmeasure.ru</a><a href="http://tenementbuilding.ru" target="_blank" rel="noopener" class="mycode_url">http://tenementbuilding.ru</a><a href="http://ultramaficrock.ru" target="_blank" rel="noopener" class="mycode_url">http://ultramaficrock.ru</a><a href="http://ultraviolettesting.ru" target="_blank" rel="noopener" class="mycode_url">http://ultraviolettesting.ru</a>
+	</div>
+	
+	
+	<div class="post_meta" id="post_meta_52633">
+		
+		<div class="float_right">
+			
+		</div>
+	</div>
+	
+</div>
+<div class="post_controls">
+	<div class="postbit_buttons author_buttons float_left">
+		<!-- start: postbit_find -->
+<a href="search.php?action=finduser&amp;uid=294" title="Find all posts by this user" class="postbit_find"><span>Find</span></a>
+<!-- end: postbit_find -->
+	</div>
+	<div class="postbit_buttons post_management_buttons float_right">
+		<!-- start: postbit_quote -->
+<a href="newreply.php?tid=401&amp;replyto=52633" title="Quote this message in a reply" class="postbit_quote postbit_mirage"><span>Reply</span></a>
+<!-- end: postbit_quote -->
+	</div>
+</div>
+</div>
+<!-- end: postbit -->
+	</div>
+</td></tr>
+		<tr>
+			<td class="tfoot">
+				<!-- start: showthread_search -->
+	<div class="float_right">
+		<form action="search.php" method="post">
+			<input type="hidden" name="action" value="thread" />
+			<input type="hidden" name="tid" value="401" />
+			<input type="text" name="keywords" value="Enter Keywords" onfocus="if(this.value == 'Enter Keywords') { this.value = ''; }" onblur="if(this.value=='') { this.value='Enter Keywords'; }" class="textbox" size="25" />
+			<input type="submit" class="button" value="Search Thread" />
+		</form>
+	</div>
+<!-- end: showthread_search -->
+				<div>
+					<strong>&laquo; <a href="showthread.php?tid=401&amp;action=nextoldest">Next Oldest</a> | <a href="showthread.php?tid=401&amp;action=nextnewest">Next Newest</a> &raquo;</strong>
+				</div>
+			</td>
+		</tr>
+	</table>
+	<div class="float_left">
+		
+	</div>
+	<div style="padding-top: 4px;" class="float_right">
+		
+	</div>
+	<br class="clear" />
+	
+	
+	
+	<br />
+	<div class="float_left">
+		<ul class="thread_tools">
+			<!-- start: showthread_printthread -->
+<li class="printable"><a href="printthread.php?tid=401">View a Printable Version</a></li>
+<!-- end: showthread_printthread -->
+			
+			
+			
+		</ul>
+	</div>
+
+	<div class="float_right" style="text-align: right;">
+		
+		<!-- start: forumjump_advanced -->
+<form action="forumdisplay.php" method="get">
+<span class="smalltext"><strong>Forum Jump:</strong></span>
+<select name="fid" class="forumjump">
+<option value="-4">Private Messages</option>
+<option value="-3">User Control Panel</option>
+<option value="-5">Who's Online</option>
+<option value="-2">Search</option>
+<option value="-1">Forum Home</option>
+<!-- start: forumjump_bit -->
+<option value="1" > Information</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="2" >-- Announcements</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="3" >-- User Support</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="4" > Social</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="5" selected="selected">-- General </option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="6" >-- Off-Topic</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="7" > Calamari </option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="8" >-- Bug Reports</option>
+<!-- end: forumjump_bit --><!-- start: forumjump_bit -->
+<option value="9" >-- Suggestions</option>
+<!-- end: forumjump_bit -->
+</select>
+<!-- start: gobutton -->
+<input type="submit" class="button" value="Go" />
+<!-- end: gobutton -->
+</form>
+<script type="text/javascript">
+$(".forumjump").change(function() {
+	var option = $(this).val();
+
+	if(option < 0)
+	{
+		window.location = 'forumdisplay.php?fid='+option;
+	}
+	else
+	{
+		window.location = 'forumdisplay.php?fid='+option;
+	}
+});
+</script>
+<!-- end: forumjump_advanced -->
+	</div>
+	<br class="clear" />
+	<!-- start: showthread_usersbrowsing -->
+<br />
+<span class="smalltext">Users browsing this thread: 1 Guest(s)</span>
+<br />
+<!-- end: showthread_usersbrowsing -->
+	<!-- start: footer -->
+
+	</div>
+</div>
+<div id="footer">
+	<div class="upper">
+		<div class="wrapper">
+			
+			
+			<ul class="menu bottom_links">
+				<!-- start: footer_showteamlink -->
+<li><a href="showteam.php">Forum Team</a></li>
+<!-- end: footer_showteamlink -->
+				<!-- start: footer_contactus -->
+<li><a href="https://forum.calamari.cc/contact.php">Contact Us</a></li>
+<!-- end: footer_contactus -->
+				<li><a href="https://forum.calamari.cc/">Calamari</a></li>
+				<li><a href="#top">Return to Top</a></li>
+				<li><a href="https://forum.calamari.cc/archive/index.php?thread-401.html">Lite (Archive) Mode</a></li>
+				<li><a href="https://forum.calamari.cc/misc.php?action=markread">Mark All Forums Read</a></li>
+				<li><a href="https://forum.calamari.cc/misc.php?action=syndication">RSS Syndication</a></li>
+			</ul>
+		</div>
+	</div>
+	<div class="lower">
+		<div class="wrapper">
+			<span id="current_time"><strong>Current time:</strong> 10-21-2019, 10:41 PM</span>
+			<span id="copyright">
+				<!-- MyBB is free software developed and maintained by a volunteer community.
+					It would be much appreciated by the MyBB Group if you left the full copyright and "powered by" notice intact,
+					to show your support for MyBB.  If you choose to remove or modify the copyright below,
+					you may be refused support on the MyBB Community Forums.
+
+					This is free software, support us and we'll support you. -->
+				Powered By <a href="https://mybb.com" target="_blank" rel="noopener">MyBB</a>, &copy; 2002-2019 <a href="https://mybb.com" target="_blank" rel="noopener">MyBB Group</a>.
+				<!-- End powered by -->
+			</span>
+		</div>
+	</div>
+</div>
+<!-- The following piece of code allows MyBB to run scheduled tasks. DO NOT REMOVE --><!-- End task image code -->
+
+</div>
+<!-- end: footer -->
+	<div id="thread_modes_popup" class="popup_menu" style="display: none;"><div class="popup_item_container"><a href="showthread.php?mode=linear&amp;tid=401&amp;pid=835#pid835" class="popup_item">Linear Mode</a></div><div class="popup_item_container"><a href="showthread.php?mode=threaded&amp;tid=401&amp;pid=835#pid835" class="popup_item">Threaded Mode</a></div></div>
+	<script type="text/javascript">
+	// <!--
+		if(use_xmlhttprequest == "1")
+		{
+			$("#thread_modes").popupMenu();
+		}
+	// -->
+	</script>
+	<script type="text/javascript">
+		var thread_deleted = "";
+		if(thread_deleted == "1")
+		{
+			$("#quick_reply_form, .new_reply_button, .thread_tools, .inline_rating").hide();
+			$("#moderator_options_selector option.option_mirage").attr("disabled","disabled");
+		}
+	</script>
+</body>
+</html>
+<!-- end: showthread -->
