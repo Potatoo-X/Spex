@@ -1,7 +1,7 @@
 <p>
   <img align="center" src="https://i.imgur.com/IyqXBb6.png"></img>
   <p align="center">
-  <a href="https://loukamb.github.io/SynapseX">API Documentation</a> <b>·</b> <a href="https://github.com/LoukaMB/SynapseX/wiki">Wiki</a> <b>·</b> <a href="https://github.com/LoukaMB/SynapseX/issues">Bug Tracker</a>
+  <a href="https://potatoo-x.github.io/Spex/docs/index.html">API Documentation</a> <b>·</b> <a href="https://github.com/LoukaMB/SynapseX/wiki">Wiki</a> <b>·</b> <a href="x.synapse.to">Offical Site!</a>
   </p>
 </p>
 
